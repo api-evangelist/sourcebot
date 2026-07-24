@@ -1,0 +1,532 @@
+openapi: 3.0.3
+info:
+  title: Sourcebot Public Enterprise (EE) Enterprise (EE) Search & Navigation API
+  version: v5.1.3
+  description: 'OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.'
+security:
+- bearerToken: []
+- apiKeyHeader: []
+- {}
+tags:
+- name: Search & Navigation
+  description: Code search and symbol navigation endpoints.
+paths:
+  /api/search:
+    post:
+      operationId: search
+      tags:
+      - Search & Navigation
+      summary: Search code
+      description: Executes a blocking code search and returns all matching file chunks.
+      x-mint:
+        content: '## Usage
+
+
+          The `query` field supports literal, regexp, and symbol searches with filters for repository, file, language, branch, and more. See the [search syntax reference](https://docs.sourcebot.dev/docs/features/search/syntax-reference) for the full query language.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicSearchRequest'
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicSearchResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+        '500':
+          description: Unexpected search failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+  /api/find_definitions:
+    post:
+      operationId: findDefinitions
+      tags:
+      - Search & Navigation
+      summary: Find symbol definitions
+      description: Returns all locations in the codebase where the given symbol is defined.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicFindSymbolsRequest'
+      responses:
+        '200':
+          description: Symbol definition locations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicFindSymbolsResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+        '500':
+          description: Unexpected failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+  /api/find_references:
+    post:
+      operationId: findReferences
+      tags:
+      - Search & Navigation
+      summary: Find symbol references
+      description: Returns all locations in the codebase where the given symbol is referenced.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicFindSymbolsRequest'
+      responses:
+        '200':
+          description: Symbol reference locations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicFindSymbolsResponse'
+        '400':
+          description: Invalid request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+        '500':
+          description: Unexpected failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+components:
+  schemas:
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
+    PublicFindSymbolsResponse:
+      type: object
+      properties:
+        stats:
+          type: object
+          properties:
+            matchCount:
+              type: number
+          required:
+          - matchCount
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              fileName:
+                type: string
+              repository:
+                type: string
+              repositoryId:
+                type: number
+              webUrl:
+                type: string
+              language:
+                type: string
+              matches:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    lineContent:
+                      type: string
+                    range:
+                      type: object
+                      properties:
+                        start:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                        end:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                      required:
+                      - start
+                      - end
+                  required:
+                  - lineContent
+                  - range
+            required:
+            - fileName
+            - repository
+            - repositoryId
+            - webUrl
+            - language
+            - matches
+        repositoryInfo:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              codeHostType:
+                type: string
+                enum:
+                - github
+                - gitlab
+                - gitea
+                - gerrit
+                - bitbucketServer
+                - bitbucketCloud
+                - genericGitHost
+                - azuredevops
+              name:
+                type: string
+              displayName:
+                type: string
+              webUrl:
+                type: string
+            required:
+            - id
+            - codeHostType
+            - name
+      required:
+      - stats
+      - files
+      - repositoryInfo
+    PublicSearchResponse:
+      type: object
+      properties:
+        stats:
+          type: object
+          properties:
+            actualMatchCount:
+              type: number
+            totalMatchCount:
+              type: number
+            duration:
+              type: number
+            fileCount:
+              type: number
+            filesSkipped:
+              type: number
+            contentBytesLoaded:
+              type: number
+            indexBytesLoaded:
+              type: number
+            crashes:
+              type: number
+            shardFilesConsidered:
+              type: number
+            filesConsidered:
+              type: number
+            filesLoaded:
+              type: number
+            shardsScanned:
+              type: number
+            shardsSkipped:
+              type: number
+            shardsSkippedFilter:
+              type: number
+            ngramMatches:
+              type: number
+            ngramLookups:
+              type: number
+            wait:
+              type: number
+            matchTreeConstruction:
+              type: number
+            matchTreeSearch:
+              type: number
+            regexpsConsidered:
+              type: number
+            flushReason:
+              type: string
+          required:
+          - actualMatchCount
+          - totalMatchCount
+          - duration
+          - fileCount
+          - filesSkipped
+          - contentBytesLoaded
+          - indexBytesLoaded
+          - crashes
+          - shardFilesConsidered
+          - filesConsidered
+          - filesLoaded
+          - shardsScanned
+          - shardsSkipped
+          - shardsSkippedFilter
+          - ngramMatches
+          - ngramLookups
+          - wait
+          - matchTreeConstruction
+          - matchTreeSearch
+          - regexpsConsidered
+          - flushReason
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              fileName:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  matchRanges:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        start:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                        end:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                      required:
+                      - start
+                      - end
+                required:
+                - text
+                - matchRanges
+              webUrl:
+                type: string
+              externalWebUrl:
+                type: string
+              repository:
+                type: string
+              repositoryId:
+                type: number
+              language:
+                type: string
+              chunks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    content:
+                      type: string
+                    matchRanges:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          start:
+                            type: object
+                            properties:
+                              byteOffset:
+                                type: number
+                              lineNumber:
+                                type: number
+                              column:
+                                type: number
+                            required:
+                            - byteOffset
+                            - lineNumber
+                            - column
+                          end:
+                            type: object
+                            properties:
+                              byteOffset:
+                                type: number
+                              lineNumber:
+                                type: number
+                              column:
+                                type: number
+                            required:
+                            - byteOffset
+                            - lineNumber
+                            - column
+                        required:
+                        - start
+                        - end
+                    contentStart:
+                      type: object
+                      properties:
+                        byteOffset:
+                          type: number
+                        lineNumber:
+                          type: number
+                        column:
+                          type: number
+                      required:
+                      - byteOffset
+                      - lineNumber
+                      - column
+                    symbols:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          symbol:
+                            type: string
+                          kind:
+                            type: string
+                          parent:
+                            type: object
+                            properties:
+                              symbol:
+                                type: string
+                              kind:
+                                type: string
+                            required:
+                            - symbol
+                            - kind
+                        required:
+                        - symbol
+                        - kind
+                  required:
+                  - content
+                  - matchRanges
+                  - contentStart
+              branches:
+                type: array
+                items:
+                  type: string
+              content:
+                type: string
+            required:
+            - fileName
+            - webUrl
+            - repository
+            - repositoryId
+            - language
+            - chunks
+        repositoryInfo:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              codeHostType:
+                type: string
+                enum:
+                - github
+                - gitlab
+                - gitea
+                - gerrit
+                - bitbucketServer
+                - bitbucketCloud
+                - genericGitHost
+                - azuredevops
+              name:
+                type: string
+              displayName:
+                type: string
+              webUrl:
+                type: string
+            required:
+            - id
+            - codeHostType
+            - name
+        isSearchExhaustive:
+          type: boolean
+      required:
+      - stats
+      - files
+      - repositoryInfo
+      - isSearchExhaustive
+    PublicFindSymbolsRequest:
+      type: object
+      properties:
+        symbolName:
+          type: string
+        language:
+          type: string
+        revisionName:
+          type: string
+        repoName:
+          type: string
+      required:
+      - symbolName
+    PublicSearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+        matches:
+          type: number
+        contextLines:
+          type: number
+        whole:
+          type: boolean
+        isRegexEnabled:
+          type: boolean
+        isCaseSensitivityEnabled:
+          type: boolean
+      required:
+      - query
+      - matches
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key.
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Sourcebot-Api-Key
+      description: 'Header of the form `X-Sourcebot-Api-Key: <token>`, where `<token>` is your API key.'

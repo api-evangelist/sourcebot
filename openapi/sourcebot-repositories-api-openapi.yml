@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Sourcebot Public Enterprise (EE) Enterprise (EE) Repositories API
+  version: v5.1.3
+  description: 'OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.'
+security:
+- bearerToken: []
+- apiKeyHeader: []
+- {}
+tags:
+- name: Repositories
+  description: Repository listing and metadata endpoints.
+paths:
+  /api/repos:
+    get:
+      operationId: listRepositories
+      tags:
+      - Repositories
+      summary: List repositories
+      description: Returns a paginated list of repositories indexed by this Sourcebot instance.
+      parameters:
+      - schema:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          default: 1
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 100
+          default: 30
+        required: false
+        name: perPage
+        in: query
+      - schema:
+          type: string
+          enum:
+          - name
+          - pushed
+          default: name
+        required: false
+        name: sort
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        required: false
+        name: direction
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: query
+        in: query
+      responses:
+        '200':
+          description: Paginated repository list.
+          headers:
+            X-Total-Count:
+              description: Total number of repositories matching the query across all pages.
+              schema:
+                type: integer
+                example: 137
+            Link:
+              description: Pagination links formatted per RFC 8288. Includes `rel="next"`, `rel="prev"`, `rel="first"`, and `rel="last"` when applicable.
+              schema:
+                type: string
+                example: </api/repos?page=2&perPage=30>; rel="next", </api/repos?page=5&perPage=30>; rel="last"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicListReposResponse'
+        '400':
+          description: Invalid query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+        '500':
+          description: Unexpected repository listing failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicApiServiceError'
+components:
+  schemas:
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
+    PublicListReposResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          codeHostType:
+            type: string
+            enum:
+            - github
+            - gitlab
+            - gitea
+            - gerrit
+            - bitbucketServer
+            - bitbucketCloud
+            - genericGitHost
+            - azuredevops
+          repoId:
+            type: number
+          repoName:
+            type: string
+          webUrl:
+            type: string
+          repoDisplayName:
+            type: string
+          externalWebUrl:
+            type: string
+          imageUrl:
+            type: string
+          indexedAt:
+            type: string
+            nullable: true
+          pushedAt:
+            type: string
+            nullable: true
+          defaultBranch:
+            type: string
+          isFork:
+            type: boolean
+          isArchived:
+            type: boolean
+        required:
+        - codeHostType
+        - repoId
+        - repoName
+        - webUrl
+        - isFork
+        - isArchived
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key.
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-Sourcebot-Api-Key
+      description: 'Header of the form `X-Sourcebot-Api-Key: <token>`, where `<token>` is your API key.'
