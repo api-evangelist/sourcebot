@@ -1,0 +1,44 @@
+# Sourcebot
+
+> Sourcebot is a self-hosted code understanding tool that helps developers and AI agents search, navigate, and understand complex enterprise codebases. It indexes every repo across GitHub, GitLab, Bitbucket, Azure DevOps, Gerrit, and Gitea, and runs entirely in your own infrastructure so your code never leaves your deployment.
+
+Sourcebot is built by Taqla Inc. It is offered as a free, self-hosted Basic tier and a paid Pro tier that adds AI features (Ask Sourcebot and an agent code context layer) plus enterprise security. Supported code hosts: GitHub, GitLab, Bitbucket, Azure DevOps, Gerrit, and Gitea (both cloud and self-managed).
+
+## Capabilities
+- **Code search**: Blazingly fast, regex- and symbol-aware code search and navigation across every repo and branch, with a built-in file explorer, code viewer, and git history/blame.
+- **Ask Sourcebot**: Ask questions about your codebase in plain English and get answers grounded in your code with inline citations. Connects tools like Jira, Slack, and Linear so PMs, support, and new hires can self-serve without pulling an engineer off their work.
+- **Agent code context layer (MCP)**: An MCP server that gives coding agents (Cursor, Claude Code, and any MCP-compatible client) grounded context across every repo in your organization, not just the repo checked out locally.
+- **Self-hosted & secure**: Deploys as a single Docker container in your own infrastructure, so your code never leaves your deployment. The Pro tier adds SSO, audit logs, and permission syncing.
+
+## Pages
+- [Home](https://www.sourcebot.dev/): product overview and live demos
+- [Pricing](https://www.sourcebot.dev/pricing): plans and full feature comparison
+- [Changelog](https://www.sourcebot.dev/changelog): release notes
+- [Blog](https://www.sourcebot.dev/blog): articles and comparisons
+- [Terms](https://www.sourcebot.dev/terms): Sourcebot Software License Agreement
+- [Privacy](https://www.sourcebot.dev/privacy): Privacy Policy
+
+## Resources
+- [Documentation](https://docs.sourcebot.dev/): setup, configuration, and feature docs
+- [Public demo](https://app.sourcebot.dev): try Sourcebot without deploying
+- [Deployment guide](https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot): self-host with a single Docker container
+- [GitHub](https://github.com/sourcebot-dev/sourcebot): source code
+
+## Pricing
+Deploy Sourcebot in your own infra today for free. Upgrade to our Pro plan at any time.
+- **Basic** (Free): The most powerful free code search tool in the world. Features: Blazingly fast code search UI across every repo and branch; Regex, symbol, and filtered search; Git history & blame; File explorer & code viewer; Self-hosted, deploys as a single Docker image; Community support.
+- **Pro** ($20 per user / month): AI code understanding, agents, and enterprise security. Features: Ask Sourcebot; Agent code context layer for Cursor, Claude Code & more; Code navigation: go to definition & find references; SSO, audit logs, permission syncing, and organization management; Onboarding support.
+- **Enterprise** (Custom): Enterprise-grade support and security features. Features: Dedicated Slack support channel; Dedicated support engineer & SLAs; Custom MSA; Offline license.
+
+## FAQ
+### What is the easiest way to try Sourcebot?
+You can deploy Sourcebot locally using our setup CLI with `npx setup-sourcebot` in minutes. You can also explore the [public demo](https://app.sourcebot.dev) before deploying your own instance.
+
+### Can I self-host Sourcebot?
+Yes. Sourcebot is designed to be self-hosted. It ships as a single Docker container that you [deploy on your own infrastructure](https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot), on-prem or in your cloud.
+
+### Where is my code stored?
+Your code never leaves your deployment. Sourcebot runs entirely within your own infrastructure, so source code and search indexes stay on-prem.
+
+### What code hosts are supported?
+GitHub, GitLab, Bitbucket, Azure DevOps, Gerrit, and Gitea, both cloud and self-managed. Need another? [Request a new integration on GitHub](https://github.com/sourcebot-dev/sourcebot/issues/new?template=feature_request.md).

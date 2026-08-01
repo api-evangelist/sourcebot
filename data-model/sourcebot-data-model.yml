@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sourcebot-public-openapi-original.json
+entities:
+  - name: Repository
+    id_field: repoId
+    key_fields: [repoName, codeHostType, webUrl, defaultBranch, isFork, isArchived]
+    code_host_types: [github, gitlab, gitea, gerrit, bitbucketServer, bitbucketCloud, genericGitHost, azuredevops]
+  - name: File
+    key_fields: [path, language, source, blobSha, webUrl]
+    belongs_to: Repository
+  - name: SearchMatch
+    key_fields: [fileName, chunks, matchRanges, language]
+    belongs_to: Repository
+  - name: Symbol
+    key_fields: [symbol, kind, parent]
+    belongs_to: File
+  - name: Commit
+    id_field: hash
+    key_fields: [date, message, authorName, authorEmail, parents, refs]
+    belongs_to: Repository
+  - name: CommitAuthor
+    key_fields: [name, email, commitCount]
+    belongs_to: Repository
+  - name: BlameRange
+    key_fields: [hash, path, startLine, lineCount]
+    belongs_to: File
+  - name: DiffFile
+    key_fields: [oldPath, newPath, hunks]
+    belongs_to: Repository
+  - name: User            # EE
+    id_field: id
+    key_fields: [name, email, role, suspendedAt, lastActivityAt]
+  - name: AuditRecord     # EE
+    id_field: id
+    key_fields: [timestamp, action, actorId, actorType, targetId, targetType, orgId]
+relationships:
+  - from: File
+    to: Repository
+    kind: belongs_to
+    via: repository
+  - from: SearchMatch
+    to: Repository
+    kind: belongs_to
+    via: repositoryId
+  - from: Symbol
+    to: File
+    kind: belongs_to
+    via: fileName
+  - from: Commit
+    to: Repository
+    kind: belongs_to
+    via: repo
+  - from: Commit
+    to: Commit
+    kind: has_many
+    via: parents
+  - from: CommitAuthor
+    to: Repository
+    kind: belongs_to
+    via: repo
+  - from: BlameRange
+    to: Commit
+    kind: belongs_to
+    via: hash
+  - from: AuditRecord
+    to: User
+    kind: belongs_to
+    via: actorId

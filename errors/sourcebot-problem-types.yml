@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sourcebot-public-openapi-original.json
+format: custom-json          # NOT rfc9457; structured PublicApiServiceError envelope
+envelope:
+  media_type: application/json
+  schema: PublicApiServiceError
+  fields:
+    - name: statusCode
+      type: number
+      description: HTTP status code echoed in the body.
+    - name: errorCode
+      type: string
+      description: Machine-readable error code string.
+    - name: message
+      type: string
+      description: Human-readable error message.
+problems:
+  - status: 400
+    title: Bad Request
+    description: Invalid request body or query parameters (e.g. malformed git ref).
+    applies_to: [search, listRepositories, getFileSource, getFileBlame, getFileTree, getDiff,
+                 findDefinitions, findReferences, listCommits, getCommit, listCommitAuthors,
+                 getUser, deleteUser, listAuditRecords]
+  - status: 403
+    title: Forbidden
+    description: >-
+      Insufficient permissions or EE entitlement not enabled; also returned when removing the
+      last active owner or when SCIM-managed membership blocks the change.
+    applies_to: [getUser, deleteUser, listUsers, listAuditRecords]
+  - status: 404
+    title: Not Found
+    description: Repository, file, revision, or organization member not found.
+    applies_to: [getFileSource, getFileBlame, getFileTree, getDiff, listCommits, getCommit,
+                 listCommitAuthors, getUser, deleteUser]
+  - status: 500
+    title: Internal Server Error
+    description: Unexpected server-side failure.
+    applies_to: [search, listRepositories, getFileSource, getFileBlame, getFileTree, getDiff,
+                 findDefinitions, findReferences, listCommits, getCommit, listCommitAuthors,
+                 getUser, deleteUser, listUsers, listAuditRecords]

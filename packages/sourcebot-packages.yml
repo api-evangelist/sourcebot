@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  npm registry (registry.npmjs.org), GitHub org github.com/sourcebot-dev.
+notes: >-
+  Sourcebot is a self-hosted product distributed primarily as a Docker image; it does
+  not publish per-language REST client SDKs. First-party npm packages are the MCP server,
+  the setup wizard CLI, and a CodeMirror language extension. The "sourcebot", "sourcebot-cli"
+  and "sourcebot-code" npm names are third-party/unrelated projects and are NOT listed as official.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@sourcebot/mcp"
+    url: https://www.npmjs.com/package/@sourcebot/mcp
+    install: npx @sourcebot/mcp@latest
+    version: 1.0.18
+    official: true
+    role: mcp-server
+    description: Model Context Protocol server that gives coding agents grounded context from a Sourcebot instance.
+  - language: javascript
+    registry: npm
+    name: setup-sourcebot
+    url: https://www.npmjs.com/package/setup-sourcebot
+    install: npx setup-sourcebot
+    version: 0.1.6
+    official: true
+    role: cli
+    description: CLI wizard for creating a Sourcebot configuration and deploying locally.
+    source: https://github.com/sourcebot-dev/sourcebot/tree/main/packages/setupWizard
+  - language: javascript
+    registry: npm
+    name: "@sourcebot/codemirror-lang-tcl"
+    url: https://www.npmjs.com/package/@sourcebot/codemirror-lang-tcl
+    official: true
+    role: library
+    description: CodeMirror 6 language extension for Tcl, maintained in the sourcebot-dev org.
+    source: https://github.com/sourcebot-dev/codemirror-lang-tcl
+distributions:
+  - kind: docker
+    name: ghcr.io / Docker image
+    install: docker run ... ghcr.io/sourcebot-dev/sourcebot
+    official: true
+    description: Primary distribution — Sourcebot deploys as a single Docker container.
+    docs: https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot
+  - kind: helm
+    name: sourcebot-helm-chart
+    official: true
+    description: Kubernetes config and Helm chart for Sourcebot.
+    source: https://github.com/sourcebot-dev/sourcebot-helm-chart
+    docs: https://docs.sourcebot.dev/docs/deployment/k8s

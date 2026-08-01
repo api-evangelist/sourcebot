@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sourcebot-public-openapi-original.json
+docs: https://docs.sourcebot.dev/docs/api-reference/authentication
+summary:
+  types: [http, apiKey, oauth2]
+  api_key_in: [header]
+  http_schemes: [bearer]
+  oauth2_flows: [authorizationCode]     # EE / MCP only, see note
+  anonymous_allowed: true               # some instances permit unauthenticated access
+schemes:
+  - name: bearerToken
+    type: http
+    scheme: bearer
+    description: >-
+      Bearer authentication header of the form `Bearer <token>`, where <token> is your
+      Sourcebot API key. Standard integration mechanism for the public REST API.
+    sources: [openapi/sourcebot-public-openapi-original.json]
+  - name: apiKeyHeader
+    type: apiKey
+    in: header
+    parameter_name: X-Sourcebot-Api-Key
+    description: "Header of the form `X-Sourcebot-Api-Key: <token>`, where <token> is your API key."
+    sources: [openapi/sourcebot-public-openapi-original.json]
+  - name: oauth2-ee
+    type: oauth2
+    flow: authorizationCode
+    description: >-
+      Enterprise (EE) OAuth 2.0 flow used to authenticate MCP / agent clients against the
+      hosted instance. Advertised via RFC 8414 authorization-server metadata with DPoP
+      (ES256) and PKCE (S256); supports dynamic client registration.
+    authorization_url: https://app.sourcebot.dev/oauth/authorize
+    token_url: https://app.sourcebot.dev/api/ee/oauth/token
+    registration_url: https://app.sourcebot.dev/api/ee/oauth/register
+    revocation_url: https://app.sourcebot.dev/api/ee/oauth/revoke
+    sources: [well-known/sourcebot-oauth-authorization-server.json]
+notes: >-
+  API keys are created in the instance Settings UI. EE endpoints (/api/ee/*) additionally
+  require an active Sourcebot license and OWNER role. OAuth bearer tokens are EE-only.

@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/sourcebot-public-openapi-original.json
+skills:
+  - file: sourcebot-search-and-read.md
+    name: Search code and read a matching file
+    api: openapi/sourcebot-public-openapi-original.json
+    operations: [search, getFileTree, getFileSource]
+  - file: sourcebot-navigate-symbols.md
+    name: Navigate symbol definitions and references
+    api: openapi/sourcebot-public-openapi-original.json
+    operations: [findDefinitions, findReferences, getFileSource]
+  - file: sourcebot-inspect-git-history.md
+    name: Inspect git history, blame, and diffs
+    api: openapi/sourcebot-public-openapi-original.json
+    operations: [listCommits, getCommit, getFileBlame, getDiff]

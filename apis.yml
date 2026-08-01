@@ -1,22 +1,207 @@
 aid: sourcebot
 name: Sourcebot
-description: Sourcebot is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Sourcebot is a self-hosted code understanding platform built by Taqla Inc. that helps
+  developers and AI agents search, navigate, and understand large enterprise codebases. It
+  indexes every repository across GitHub, GitLab, Bitbucket, Azure DevOps, Gerrit, and Gitea
+  and runs entirely inside your own infrastructure, so source code never leaves your deployment.
+  Alongside a fast regex- and symbol-aware code search UI with file explorer and git history/blame,
+  Sourcebot ships "Ask Sourcebot" natural-language codebase Q&A and an agent code context layer
+  (an MCP server) that gives coding agents like Cursor and Claude Code grounded context across
+  every repo. Its public REST API exposes search, symbol navigation, repository listing, git
+  history/blame/diff, and enterprise user/audit endpoints, secured with API keys (and EE OAuth
+  for agent clients). Free self-hosted Basic tier, paid Pro tier for AI and enterprise security.
 url: https://raw.githubusercontent.com/api-evangelist/sourcebot/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/sourcebot-dev.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: enriched-from-public-api
+x-company: Taqla Inc.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Code Search
+- Code Intelligence
+- Developer Tools
+- Source Code
+- Git
+- MCP
+- AI Coding Agents
+- Enterprise Search
+- Self-Hosted
+apis:
+- aid: sourcebot:sourcebot-enterprise-ee-api
+  name: Sourcebot Enterprise (EE) API
+  description: Enterprise endpoints for user management and audit logging.
+  humanURL: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+  baseURL: https://app.sourcebot.dev
+  tags:
+  - Enterprise (EE)
+  properties:
+  - type: OpenAPI
+    url: openapi/sourcebot-enterprise-ee-api-openapi.yml
+  - type: Authentication
+    url: authentication/sourcebot-authentication.yml
+  - type: Conventions
+    url: conventions/sourcebot-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sourcebot-problem-types.yml
+  - type: DataModel
+    url: data-model/sourcebot-data-model.yml
+- aid: sourcebot:sourcebot-git-api
+  name: Sourcebot Git API
+  description: Git history, diff, and file content endpoints.
+  humanURL: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+  baseURL: https://app.sourcebot.dev
+  tags:
+  - Git
+  properties:
+  - type: OpenAPI
+    url: openapi/sourcebot-git-api-openapi.yml
+  - type: Authentication
+    url: authentication/sourcebot-authentication.yml
+  - type: Conventions
+    url: conventions/sourcebot-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sourcebot-problem-types.yml
+  - type: DataModel
+    url: data-model/sourcebot-data-model.yml
+- aid: sourcebot:sourcebot-repositories-api
+  name: Sourcebot Repositories API
+  description: Repository listing and metadata endpoints.
+  humanURL: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+  baseURL: https://app.sourcebot.dev
+  tags:
+  - Repositories
+  properties:
+  - type: OpenAPI
+    url: openapi/sourcebot-repositories-api-openapi.yml
+  - type: Authentication
+    url: authentication/sourcebot-authentication.yml
+  - type: Conventions
+    url: conventions/sourcebot-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sourcebot-problem-types.yml
+  - type: DataModel
+    url: data-model/sourcebot-data-model.yml
+- aid: sourcebot:sourcebot-search-navigation-api
+  name: Sourcebot Search & Navigation API
+  description: Code search and symbol navigation endpoints.
+  humanURL: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+  baseURL: https://app.sourcebot.dev
+  tags:
+  - Search & Navigation
+  properties:
+  - type: OpenAPI
+    url: openapi/sourcebot-search-navigation-api-openapi.yml
+  - type: Authentication
+    url: authentication/sourcebot-authentication.yml
+  - type: Conventions
+    url: conventions/sourcebot-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sourcebot-problem-types.yml
+  - type: DataModel
+    url: data-model/sourcebot-data-model.yml
+- aid: sourcebot:sourcebot-system-api
+  name: Sourcebot System API
+  description: System health and version endpoints.
+  humanURL: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+  baseURL: https://app.sourcebot.dev
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/sourcebot-system-api-openapi.yml
+  - type: Authentication
+    url: authentication/sourcebot-authentication.yml
+  - type: Conventions
+    url: conventions/sourcebot-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sourcebot-problem-types.yml
+  - type: DataModel
+    url: data-model/sourcebot-data-model.yml
+common:
+- type: AgenticAccess
+  url: agentic-access/sourcebot-agentic-access.yml
+- type: DomainSecurity
+  url: security/sourcebot-domain-security.yml
+- type: DeveloperPortal
+  url: https://docs.sourcebot.dev/
+- type: Documentation
+  url: https://docs.sourcebot.dev/
+- type: APIReference
+  url: https://docs.sourcebot.dev/api-reference/search-&-navigation/search-code
+- type: GettingStarted
+  url: https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot
+- type: Quickstart
+  url: https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot
+- type: Website
+  url: https://www.sourcebot.dev
+- type: Blog
+  url: https://www.sourcebot.dev/blog
+- type: Pricing
+  url: https://www.sourcebot.dev/pricing
+- type: SignUp
+  url: https://app.sourcebot.dev
+- type: Support
+  url: https://github.com/sourcebot-dev/sourcebot/issues
+- type: GitHubOrganization
+  url: https://github.com/sourcebot-dev
+- type: TermsOfService
+  url: https://www.sourcebot.dev/terms
+- type: PrivacyPolicy
+  url: https://www.sourcebot.dev/privacy
+- type: StatusPage
+  url: https://status.sourcebot.dev
+- type: Deprecation
+  url: https://docs.sourcebot.dev/docs/upgrade/v4-to-v5-guide
+- type: ChangeLog
+  url: https://www.sourcebot.dev/changelog
+- type: ChangeLog
+  name: Sourcebot Changelog (artifact)
+  url: changelog/sourcebot-changelog.yml
+- type: Lifecycle
+  url: lifecycle/sourcebot-lifecycle.yml
+- type: MCPServer
+  url: mcp/sourcebot-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/sourcebot-packages.yml
+- type: CLI
+  url: cli/sourcebot-cli.yml
+- type: Sandbox
+  url: sandbox/sourcebot-sandbox.yml
+- type: WellKnown
+  url: well-known/sourcebot-well-known.yml
+- type: Conformance
+  url: conformance/sourcebot-conformance.yml
+- type: LLMsTxt
+  url: llms/sourcebot-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

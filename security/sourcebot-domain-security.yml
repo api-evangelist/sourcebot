@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.sourcebot.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 28 03:38:25 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: docs.sourcebot.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  1 18:45:47 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: app.sourcebot.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 15 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+domains:
+- domain: sourcebot.dev
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

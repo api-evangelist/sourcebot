@@ -1,0 +1,22 @@
+{
+  "provider": "sourcebot",
+  "sources": [
+    "sourcebot-enterprise-ee-api-openapi.yml",
+    "sourcebot-git-api-openapi.yml",
+    "sourcebot-repositories-api-openapi.yml",
+    "sourcebot-search-navigation-api-openapi.yml",
+    "sourcebot-system-api-openapi.yml"
+  ],
+  "outputs": [
+    "sourcebot-enterprise-ee-api-openapi.yml",
+    "sourcebot-git-api-openapi.yml",
+    "sourcebot-repositories-api-openapi.yml",
+    "sourcebot-search-navigation-api-openapi.yml",
+    "sourcebot-system-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

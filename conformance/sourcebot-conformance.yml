@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sourcebot-public-openapi-original.json, well-known/sourcebot-oauth-authorization-server.json
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: docs/api-reference/sourcebot-public.openapi.json is OpenAPI 3.0.3.
+  - id: oauth2
+    conforms: true
+    evidence: EE OAuth 2.0 authorization-code flow for MCP/agent clients.
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: /.well-known/oauth-authorization-server published on app.sourcebot.dev.
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported = [S256].
+  - id: rfc9449-dpop
+    conforms: true
+    evidence: dpop_signing_alg_values_supported = [ES256].
+  - id: rfc7591-dynamic-client-registration
+    conforms: true
+    evidence: registration_endpoint present in authorization-server metadata.
+  - id: rfc8288-web-linking
+    conforms: true
+    evidence: List responses return RFC 8288 Link headers for pagination.
+  - id: bearer-token-auth
+    conforms: true
+    evidence: http bearer + X-Sourcebot-Api-Key securitySchemes.
+  - id: mcp
+    conforms: true
+    evidence: Official MCP server (@sourcebot/mcp, Streamable HTTP at /api/mcp) with 11 tools.
+  - id: scim2
+    conforms: true
+    evidence: SCIM provisioning documented (docs/configuration/auth/scim); 403 on deleteUser when SCIM-managed.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom PublicApiServiceError envelope, not application/problem+json.

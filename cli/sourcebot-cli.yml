@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/package/setup-sourcebot
+name: setup-sourcebot
+summary: >-
+  CLI wizard for creating a Sourcebot configuration and deploying a local instance in minutes.
+  Distributed on npm; the Sourcebot server binary itself ships as a Docker image (see packages/).
+install:
+  - method: npx
+    command: npx setup-sourcebot
+version: 0.1.6
+official: true
+repo: https://github.com/sourcebot-dev/sourcebot/tree/main/packages/setupWizard
+key_flows:
+  - Generate a Sourcebot config file (connections to GitHub/GitLab/Bitbucket/Azure DevOps/Gerrit/Gitea).
+  - Bootstrap a local self-hosted deployment for evaluation.
+notes: >-
+  Sourcebot is operated primarily through its self-hosted web UI, config file, and REST API
+  rather than a broad command surface; setup-sourcebot is the onboarding/config wizard.

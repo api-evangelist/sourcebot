@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sourcebot.dev
+versioning:
+  scheme: semver
+  current: v5.1.3
+  major_line: v5
+  strategy: >-
+    Self-hosted product versioned by Docker image tag / GitHub release; the public REST API
+    reports its version at GET /api/version and carries the product version (v5.1.3) in the
+    OpenAPI info.version.
+deprecation:
+  policy: >-
+    Breaking changes are shipped across major versions with dedicated upgrade guides
+    (v2->v3, v3->v4, v4->v5); no dated HTTP Sunset/Deprecation header contract is documented.
+  upgrade_guides:
+    - https://docs.sourcebot.dev/docs/upgrade/v2-to-v3-guide
+    - https://docs.sourcebot.dev/docs/upgrade/v3-to-v4-guide
+    - https://docs.sourcebot.dev/docs/upgrade/v4-to-v5-guide
+  sunset_header: false
+status_page: https://status.sourcebot.dev
+changelog: https://www.sourcebot.dev/changelog
+deprecated_operations: []
+notes: >-
+  status.sourcebot.dev returned HTTP 200. No published SLA/uptime target was found for the
+  self-hosted product (SLAs are part of the Enterprise tier).

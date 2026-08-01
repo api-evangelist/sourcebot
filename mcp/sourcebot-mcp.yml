@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.sourcebot.dev/docs/features/mcp-server
+server:
+  name: sourcebot
+  transport: http                 # Streamable HTTP
+  route: /api/mcp                  # hosted on each Sourcebot deployment, e.g. https://<your-instance>/api/mcp
+  demo_url: https://app.sourcebot.dev/api/mcp
+  npm_package: "@sourcebot/mcp"    # standalone server package, npx @sourcebot/mcp@latest
+  auth: >-
+    API key created in the instance Settings, passed as a header; the hosted EE flow can
+    also use OAuth 2.0 (RFC 8414 authorization server at app.sourcebot.dev, DPoP + PKCE S256).
+description: >-
+  Sourcebot's "agent code context layer" — an MCP server that gives coding agents (Cursor,
+  Claude Code, VS Code, and any MCP-compatible client) grounded search and navigation context
+  across every repo indexed by a Sourcebot instance, not just the repo checked out locally.
+tools:
+  - name: grep
+    description: Search code using regex patterns across repositories.
+    source_operation: openapi/sourcebot-public-openapi-original.json#search
+  - name: list_repos
+    description: List indexed repositories with filtering options.
+    source_operation: openapi/sourcebot-public-openapi-original.json#listRepositories
+  - name: read_file
+    description: Retrieve source code from a specific file.
+    source_operation: openapi/sourcebot-public-openapi-original.json#getFileSource
+  - name: list_tree
+    description: Display files and directories from a repository path.
+    source_operation: openapi/sourcebot-public-openapi-original.json#getFileTree
+  - name: list_commits
+    description: Retrieve commit history for a repository.
+    source_operation: openapi/sourcebot-public-openapi-original.json#listCommits
+  - name: glob
+    description: Find files matching glob patterns across repos.
+  - name: get_diff
+    description: Compare two git refs in a repository.
+    source_operation: openapi/sourcebot-public-openapi-original.json#getDiff
+  - name: find_symbol_definitions
+    description: Locate where symbols are defined.
+    source_operation: openapi/sourcebot-public-openapi-original.json#findDefinitions
+  - name: find_symbol_references
+    description: Find all usages of a symbol.
+    source_operation: openapi/sourcebot-public-openapi-original.json#findReferences
+  - name: list_language_models
+    description: Discover available AI models configured on the instance.
+  - name: ask_codebase
+    description: Query the codebase using natural language (Ask Sourcebot).

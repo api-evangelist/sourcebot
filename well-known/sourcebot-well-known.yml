@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: probed /.well-known/* on www.sourcebot.dev, docs.sourcebot.dev, app.sourcebot.dev
+notes: >-
+  Sourcebot is self-hosted; the hosted public demo at app.sourcebot.dev exposes an
+  RFC 8414 OAuth 2.0 Authorization Server metadata document used by the Enterprise (EE)
+  OAuth flow that authenticates MCP / agent clients (DPoP + PKCE S256, dynamic client
+  registration). No security.txt, OpenID Connect discovery, api-catalog, or ai-plugin.json
+  was published on any host.
+hosts:
+  - host: https://app.sourcebot.dev
+    documents:
+      - path: /.well-known/oauth-authorization-server   # RFC 8414
+        status: 200
+        file: sourcebot-oauth-authorization-server.json
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://www.sourcebot.dev
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://docs.sourcebot.dev
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404

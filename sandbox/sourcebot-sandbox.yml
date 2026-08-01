@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://app.sourcebot.dev
+type: hosted-demo
+summary: >-
+  Sourcebot publishes a live, hosted public demo instance you can explore without deploying —
+  it indexes a set of public repositories and exposes the full search/navigation UI (and the
+  same REST + MCP surface at app.sourcebot.dev). This functions as a read-only playground for
+  the API; there are no separate test/live key modes because Sourcebot is self-hosted.
+playground:
+  url: https://app.sourcebot.dev
+  api_base: https://app.sourcebot.dev
+  mcp: https://app.sourcebot.dev/api/mcp
+local:
+  quickstart: npx setup-sourcebot
+  docs: https://docs.sourcebot.dev/docs/deployment/deploy-sourcebot
+notes: >-
+  No published test cards / magic values (not a payments or comms API). Try-before-deploy is
+  the demo instance; a full local instance is a single Docker container.

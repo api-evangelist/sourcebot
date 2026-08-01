@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.sourcebot.dev/changelog
+also: https://github.com/sourcebot-dev/sourcebot/releases
+scheme: semver
+current_version: v5.1.3        # GitHub release published 2026-07-20
+entries:
+  - title: Agent Skills
+    date: '2026-07-10'
+    highlight: Teach Ask Sourcebot how your team works with reusable skills.
+    breaking: false
+  - version: v5
+    title: Sourcebot v5
+    date: '2026-06-03'
+    highlight: Ask connectors, app redesign, plus Git blame and history features.
+    breaking: true
+  - title: Week of March 23, 2026
+    date: '2026-03-30'
+    highlight: MCP glob & list_tree tools, .gitattributes language hints, and topic-based search contexts.
+    breaking: false
+  - title: Week of March 21, 2026
+    date: '2026-03-21'
+    highlight: API key restrictions, MCP path regex filtering, and Redis TLS support.
+    breaking: false
+  - title: Week of March 9, 2026
+    date: '2026-03-16'
+    highlight: OpenAPI documentation, JumpCloud SSO, and multi-owner teams.
+    breaking: false
+  - title: File Explorer Improvements
+    date: '2026-01-20'
+    highlight: File explorer load time for 100k+ file repos cut from 10-20s to under a second.
+    breaking: false
+  - title: Streamed Search
+    date: '2025-11-24'
+    highlight: Search results now stream progressively for faster performance at scale.
+    breaking: false
+  - title: Account Linking
+    date: '2025-11-04'
+    highlight: Link multiple identity providers to one Sourcebot user and sync permissions across code hosts.
+    breaking: false

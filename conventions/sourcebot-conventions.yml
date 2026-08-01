@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sourcebot-public-openapi-original.json
+docs: https://docs.sourcebot.dev/docs/api-reference/authentication
+authentication:
+  style: api-key
+  detail: "Bearer <api-key> or X-Sourcebot-Api-Key: <api-key>; EE OAuth for MCP/agents."
+  ref: authentication/sourcebot-authentication.yml
+pagination:
+  style: page-number
+  params:
+    - name: page
+      default: 1
+      in: query
+    - name: perPage
+      default: 30
+      max: 100
+      in: query
+    - name: sort
+      in: query
+    - name: direction
+      in: query
+  response_signals:
+    - header: X-Total-Count
+      description: Total number of items matching the query across all pages.
+    - header: Link
+      description: RFC 8288 pagination links (rel=next/prev/first/last).
+  applies_to: [listRepositories, listCommits, listCommitAuthors, listAuditRecords]
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header or idempotent-retry contract is documented. Write surface is
+    minimal (only deleteUser); read operations are naturally idempotent.
+error_envelope:
+  media_type: application/json
+  shape: "{ statusCode, errorCode, message }"
+  ref: errors/sourcebot-problem-types.yml
+versioning:
+  scheme: semver
+  reported_at: GET /api/version
+  ref: lifecycle/sourcebot-lifecycle.yml
+request_semantics:
+  search_query_language: https://docs.sourcebot.dev/docs/features/search/syntax-reference
+  git_filters: "commit/author/date filters use POSIX BRE regex (case-insensitive)."
+rate_limiting:
+  signaled: false
+  detail: Self-hosted; no documented public rate-limit headers.
+notes: >-
+  Cross-links: errors/, lifecycle/, authentication/. Sourcebot is self-hosted, so the base
+  URL is instance-dependent; app.sourcebot.dev is the hosted public demo instance.
