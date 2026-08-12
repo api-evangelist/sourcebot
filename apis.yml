@@ -138,6 +138,8 @@ apis:
   - type: DataModel
     url: data-model/sourcebot-data-model.yml
 common:
+- type: Overlay
+  url: overlays/sourcebot-public-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/sourcebot-agentic-access.yml
 - type: DomainSecurity
