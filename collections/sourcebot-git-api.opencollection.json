@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) Git API",
+    "version": "v5.1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Git",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get file contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/source",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ref",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the raw source content of a file at a given repository path and optional git ref."
+        },
+        {
+          "info": {
+            "name": "Get file blame",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/blame",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The file path to blame, relative to the repository root."
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified repository name."
+              },
+              {
+                "name": "ref",
+                "value": "",
+                "type": "query",
+                "description": "The git ref (branch, tag, or commit SHA) to blame at. Defaults to the repository's default branch."
+              }
+            ]
+          },
+          "docs": "Returns blame information for a file at a given repository path and optional git ref.\n\nThe response is split into two parts:\n- `ranges`: contiguous, non-overlapping line ranges, each attributed to a single commit. Ordered by `startLine`.\n- `commits`: commit metadata (hash, date, message, author, optional `previous` pointer for walking back through history) keyed by hash, deduplicated across ranges.\n\nWhole-file renames are followed automatically. Cross-file line moves and copies are not."
+        },
+        {
+          "info": {
+            "name": "Get a file tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/tree",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the file tree for a repository at a given revision."
+        },
+        {
+          "info": {
+            "name": "Get diff between two commits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/diff",
+            "params": [
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified repository name."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "The base git ref (branch, tag, or commit SHA) to diff from."
+              },
+              {
+                "name": "head",
+                "value": "",
+                "type": "query",
+                "description": "The head git ref (branch, tag, or commit SHA) to diff to."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the diff to changes touching this file path. Omit to diff all changes between the two refs."
+              }
+            ]
+          },
+          "docs": "Returns a structured diff between two git refs using a two-dot comparison. See [git-diff](https://git-scm.com/docs/git-diff) for details."
+        },
+        {
+          "info": {
+            "name": "List commits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/commits",
+            "params": [
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified repository name."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Filter commits by message content (case-insensitive). Interpreted as a POSIX BRE regex — escape metacharacters for literal matching."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return commits after this date. Accepts ISO 8601 or relative formats (e.g. `30 days ago`)."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Return commits before this date. Accepts ISO 8601 or relative formats."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter commits by author name or email (case-insensitive). Interpreted as a POSIX BRE regex — escape metacharacters for literal matching."
+              },
+              {
+                "name": "ref",
+                "value": "",
+                "type": "query",
+                "description": "The git ref (branch, tag, or commit SHA) to list commits from. Defaults to `HEAD`."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Restrict commits to those that touch this file path."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of commits for a repository."
+        },
+        {
+          "info": {
+            "name": "Get commit details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/commit",
+            "params": [
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified repository name."
+              },
+              {
+                "name": "ref",
+                "value": "",
+                "type": "query",
+                "description": "The git ref (commit SHA, branch, or tag)."
+              }
+            ]
+          },
+          "docs": "Returns details for a single commit, including parent commit SHAs."
+        },
+        {
+          "info": {
+            "name": "List commit authors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/commits/authors",
+            "params": [
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified repository name."
+              },
+              {
+                "name": "ref",
+                "value": "",
+                "type": "query",
+                "description": "The git ref (branch, tag, or commit SHA) to list authors from. Defaults to `HEAD`."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Restrict authors to those who touched this file path."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of unique authors who committed in a repository, sorted by commit count descending. Optionally scoped to a file path."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

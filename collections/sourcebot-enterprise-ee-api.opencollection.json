@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) Enterprise (EE) API",
+    "version": "v5.1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enterprise (EE)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/ee/user",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the user to retrieve."
+              }
+            ]
+          },
+          "docs": "Fetches details for a single organization member by `userId`. Only organization owners can access this endpoint."
+        },
+        {
+          "info": {
+            "name": "Remove a user from the organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/ee/user",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the user to remove."
+              }
+            ]
+          },
+          "docs": "Removes a user from the organization, revoking their access and their sessions. Only organization owners can access this endpoint."
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/ee/users"
+          },
+          "docs": "Returns all members of the organization. Only organization owners can access this endpoint."
+        },
+        {
+          "info": {
+            "name": "List audit records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/ee/audit",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return records at or after this timestamp (ISO 8601)."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Return records at or before this timestamp (ISO 8601)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of audit log entries. Only organization owners can access this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

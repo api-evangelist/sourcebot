@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) System API",
+    "version": "v5.1.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Sourcebot version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/version"
+          },
+          "docs": "Returns the currently running Sourcebot version string."
+        },
+        {
+          "info": {
+            "name": "Health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/health"
+          },
+          "docs": "Health check"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

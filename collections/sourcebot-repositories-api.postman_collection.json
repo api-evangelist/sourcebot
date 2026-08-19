@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "bd62f772-cec4-4297-9a06-d2b08f4538e9",
+      "name": "Repositories",
+      "description": {
+        "content": "Repository listing and metadata endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2283687d-f64b-446d-a0cf-58467ad30c84",
+          "name": "List repositories",
+          "request": {
+            "name": "List repositories",
+            "description": {
+              "content": "Returns a paginated list of repositories indexed by this Sourcebot instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "30"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "name"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "asc"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e924986-c2ce-4da5-9e1d-88eb71b41a75",
+              "name": "Paginated repository list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "30"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of repositories matching the query across all pages.",
+                  "key": "X-Total-Count",
+                  "value": "137"
+                },
+                {
+                  "disabled": false,
+                  "description": "Pagination links formatted per RFC 8288. Includes `rel=\"next\"`, `rel=\"prev\"`, `rel=\"first\"`, and `rel=\"last\"` when applicable.",
+                  "key": "Link",
+                  "value": "</api/repos?page=2&perPage=30>; rel=\"next\", </api/repos?page=5&perPage=30>; rel=\"last\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"codeHostType\": \"github\",\n    \"repoId\": 2293.5699749793225,\n    \"repoName\": \"string\",\n    \"webUrl\": \"string\",\n    \"isFork\": false,\n    \"isArchived\": false,\n    \"repoDisplayName\": \"string\",\n    \"externalWebUrl\": \"string\",\n    \"imageUrl\": \"string\",\n    \"indexedAt\": \"string\",\n    \"pushedAt\": \"string\",\n    \"defaultBranch\": \"string\"\n  },\n  {\n    \"codeHostType\": \"gitlab\",\n    \"repoId\": 6552.035697218836,\n    \"repoName\": \"string\",\n    \"webUrl\": \"string\",\n    \"isFork\": true,\n    \"isArchived\": false,\n    \"repoDisplayName\": \"string\",\n    \"externalWebUrl\": \"string\",\n    \"imageUrl\": \"string\",\n    \"indexedAt\": \"string\",\n    \"pushedAt\": \"string\",\n    \"defaultBranch\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8c3699-065d-4ce7-9209-7527d3da3670",
+              "name": "Invalid query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "30"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6229.813394166238,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd014e19-e1ed-4ba8-a9e2-6d63e741af60",
+              "name": "Unexpected repository listing failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "30"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6229.813394166238,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "848dbd9a-d5c0-485a-9f97-3962df6266c5",
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) Repositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.",
+      "type": "text/plain"
+    }
+  }
+}

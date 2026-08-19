@@ -1,0 +1,2196 @@
+{
+  "item": [
+    {
+      "id": "4e466537-0964-463d-90ca-7319630d0e89",
+      "name": "Git",
+      "description": {
+        "content": "Git history, diff, and file content endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e16e53e0-758f-4682-bf39-f3a71ee4331e",
+          "name": "Get file contents",
+          "request": {
+            "name": "Get file contents",
+            "description": {
+              "content": "Returns the raw source content of a file at a given repository path and optional git ref.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ref",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "979d9dd5-d533-48fa-b999-58fd559088d3",
+              "name": "File source and metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"source\": \"string\",\n  \"language\": \"string\",\n  \"path\": \"string\",\n  \"repo\": \"string\",\n  \"repoCodeHostType\": \"gitea\",\n  \"webUrl\": \"string\",\n  \"repoDisplayName\": \"string\",\n  \"repoExternalWebUrl\": \"string\",\n  \"externalWebUrl\": \"string\",\n  \"blobSha\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a161b544-b9c4-4f3d-bfa7-cdce74c87c10",
+              "name": "Invalid query parameters or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d88acd2-16c1-4473-a430-1ed384ca4dae",
+              "name": "Repository or file not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18ee733d-f593-4f31-85a0-e6c44195f01c",
+              "name": "Unexpected file retrieval failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07af1614-68c1-4b50-9834-06348700eba4",
+          "name": "Get file blame",
+          "request": {
+            "name": "Get file blame",
+            "description": {
+              "content": "Returns blame information for a file at a given repository path and optional git ref.\n\nThe response is split into two parts:\n- `ranges`: contiguous, non-overlapping line ranges, each attributed to a single commit. Ordered by `startLine`.\n- `commits`: commit metadata (hash, date, message, author, optional `previous` pointer for walking back through history) keyed by hash, deduplicated across ranges.\n\nWhole-file renames are followed automatically. Cross-file line moves and copies are not.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "blame"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) The file path to blame, relative to the repository root."
+                },
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) The fully-qualified repository name."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref",
+                  "value": "<string>",
+                  "description": "The git ref (branch, tag, or commit SHA) to blame at. Defaults to the repository's default branch."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6e68e3d-a41b-40a5-9b67-32e62f93c6ec",
+              "name": "Blame ranges and deduplicated commit metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "blame"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ranges\": [\n    {\n      \"hash\": \"string\",\n      \"path\": \"string\",\n      \"startLine\": 7414,\n      \"lineCount\": 27\n    },\n    {\n      \"hash\": \"string\",\n      \"path\": \"string\",\n      \"startLine\": 5113,\n      \"lineCount\": 3240\n    }\n  ],\n  \"commits\": {\n    \"key_0\": {\n      \"hash\": \"string\",\n      \"date\": \"string\",\n      \"message\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"previous\": {\n        \"hash\": \"string\",\n        \"path\": \"string\"\n      }\n    },\n    \"key_1\": {\n      \"hash\": \"string\",\n      \"date\": \"string\",\n      \"message\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"previous\": {\n        \"hash\": \"string\",\n        \"path\": \"string\"\n      }\n    },\n    \"key_2\": {\n      \"hash\": \"string\",\n      \"date\": \"string\",\n      \"message\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"previous\": {\n        \"hash\": \"string\",\n        \"path\": \"string\"\n      }\n    },\n    \"key_3\": {\n      \"hash\": \"string\",\n      \"date\": \"string\",\n      \"message\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"previous\": {\n        \"hash\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98aa3936-66f9-48ab-aa83-d1bc81a038fc",
+              "name": "Invalid query parameters or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "blame"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0f1f37e-b14e-4314-9d80-8069fd043d7d",
+              "name": "Repository or file not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "blame"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34982547-596d-4dc6-a4c5-3111853d63f6",
+              "name": "Unexpected blame retrieval failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "blame"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f55c858d-86bc-4dbc-849d-76424f0c9521",
+          "name": "Get a file tree",
+          "request": {
+            "name": "Get a file tree",
+            "description": {
+              "content": "Returns the file tree for a repository at a given revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "tree"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repoName\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0de097b-b3b3-4791-aecb-94e3bf8d9aad",
+              "name": "File tree for the requested repository revision.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repoName\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tree\": {\n    \"type\": \"string\",\n    \"path\": \"string\",\n    \"name\": \"string\",\n    \"children\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/PublicFileTreeNode detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/PublicFileTreeNode detected>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "949d1140-a417-4ae0-a7ab-c5170e7fae4f",
+              "name": "Invalid request body or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repoName\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ada9529-fbf8-4c07-8638-25181ee77db7",
+              "name": "Repository or path not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repoName\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee9e927f-f51a-4df6-a539-e7875dda1da6",
+              "name": "Unexpected tree retrieval failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repoName\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f17f8e04-1c91-4d33-ba76-2c245f3bc613",
+          "name": "Get diff between two commits",
+          "request": {
+            "name": "Get diff between two commits",
+            "description": {
+              "content": "Returns a structured diff between two git refs using a two-dot comparison. See [git-diff](https://git-scm.com/docs/git-diff) for details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "diff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) The fully-qualified repository name."
+                },
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "<string>",
+                  "description": "(Required) The base git ref (branch, tag, or commit SHA) to diff from."
+                },
+                {
+                  "disabled": false,
+                  "key": "head",
+                  "value": "<string>",
+                  "description": "(Required) The head git ref (branch, tag, or commit SHA) to diff to."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Restrict the diff to changes touching this file path. Omit to diff all changes between the two refs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c9cacb5-1832-4c73-b57c-f3b799832b16",
+              "name": "Structured diff between the two refs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"oldPath\": \"string\",\n      \"newPath\": \"string\",\n      \"hunks\": [\n        {\n          \"oldRange\": {\n            \"start\": 9854,\n            \"lines\": 2448\n          },\n          \"newRange\": {\n            \"start\": 8312,\n            \"lines\": 5958\n          },\n          \"body\": \"string\",\n          \"heading\": \"string\"\n        },\n        {\n          \"oldRange\": {\n            \"start\": 5743,\n            \"lines\": 535\n          },\n          \"newRange\": {\n            \"start\": 8985,\n            \"lines\": 5156\n          },\n          \"body\": \"string\",\n          \"heading\": \"string\"\n        }\n      ]\n    },\n    {\n      \"oldPath\": \"string\",\n      \"newPath\": \"string\",\n      \"hunks\": [\n        {\n          \"oldRange\": {\n            \"start\": 586,\n            \"lines\": 6141\n          },\n          \"newRange\": {\n            \"start\": 6273,\n            \"lines\": 4049\n          },\n          \"body\": \"string\",\n          \"heading\": \"string\"\n        },\n        {\n          \"oldRange\": {\n            \"start\": 8680,\n            \"lines\": 1604\n          },\n          \"newRange\": {\n            \"start\": 175,\n            \"lines\": 6117\n          },\n          \"body\": \"string\",\n          \"heading\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7fbf4b4-f766-4f0f-bfc2-6014d768a5b8",
+              "name": "Invalid query parameters or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e1d3eb4-fe16-41a9-ba2a-08dd06c09997",
+              "name": "Repository not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "685f4ae6-8a57-4613-bd09-3b4ea06e3c57",
+              "name": "Unexpected diff failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "head",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f41c440-221f-4c22-b25b-ce85d734ad05",
+          "name": "List commits",
+          "request": {
+            "name": "List commits",
+            "description": {
+              "content": "Returns a paginated list of commits for a repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "commits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) The fully-qualified repository name."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Filter commits by message content (case-insensitive). Interpreted as a POSIX BRE regex — escape metacharacters for literal matching."
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>",
+                  "description": "Return commits after this date. Accepts ISO 8601 or relative formats (e.g. `30 days ago`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<string>",
+                  "description": "Return commits before this date. Accepts ISO 8601 or relative formats."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<string>",
+                  "description": "Filter commits by author name or email (case-insensitive). Interpreted as a POSIX BRE regex — escape metacharacters for literal matching."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref",
+                  "value": "<string>",
+                  "description": "The git ref (branch, tag, or commit SHA) to list commits from. Defaults to `HEAD`."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Restrict commits to those that touch this file path."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e40cadd-3f91-4d8f-9f12-dedd863a0cd1",
+              "name": "Paginated commit list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of commits matching the query across all pages.",
+                  "key": "X-Total-Count",
+                  "value": "8750"
+                },
+                {
+                  "disabled": false,
+                  "description": "Pagination links formatted per RFC 8288.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"hash\": \"string\",\n    \"date\": \"string\",\n    \"message\": \"string\",\n    \"refs\": \"string\",\n    \"body\": \"string\",\n    \"authorName\": \"string\",\n    \"authorEmail\": \"string\"\n  },\n  {\n    \"hash\": \"string\",\n    \"date\": \"string\",\n    \"message\": \"string\",\n    \"refs\": \"string\",\n    \"body\": \"string\",\n    \"authorName\": \"string\",\n    \"authorEmail\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c768783-d180-44d7-8b09-1abdbc762087",
+              "name": "Invalid query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "372aed77-de16-4fd4-b9df-2239b8c372ac",
+              "name": "Repository not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42aea63d-ca4a-45b8-b276-ce4838a491c6",
+              "name": "Unexpected failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daa420ab-2a62-4eca-8ca9-e8075fbe7541",
+          "name": "Get commit details",
+          "request": {
+            "name": "Get commit details",
+            "description": {
+              "content": "Returns details for a single commit, including parent commit SHAs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) The fully-qualified repository name."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref",
+                  "value": "<string>",
+                  "description": "(Required) The git ref (commit SHA, branch, or tag)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de05c57e-5b4d-46b7-aa25-8b15d5ca28bc",
+              "name": "Commit details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hash\": \"string\",\n  \"date\": \"string\",\n  \"message\": \"string\",\n  \"refs\": \"string\",\n  \"body\": \"string\",\n  \"authorName\": \"string\",\n  \"authorEmail\": \"string\",\n  \"parents\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b78e037-cf72-4e9a-ab80-05a8da8e844e",
+              "name": "Invalid query parameters or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "907d4099-a4c4-4f60-b75c-ef665a6f2d06",
+              "name": "Repository or revision not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6a9af9e-dfb4-4478-9a71-fee767e6fe62",
+              "name": "Unexpected failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3da773a-b0e1-4159-82c8-f34ccbcaffad",
+          "name": "List commit authors",
+          "request": {
+            "name": "List commit authors",
+            "description": {
+              "content": "Returns a paginated list of unique authors who committed in a repository, sorted by commit count descending. Optionally scoped to a file path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "commits",
+                "authors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repo",
+                  "value": "<string>",
+                  "description": "(Required) The fully-qualified repository name."
+                },
+                {
+                  "disabled": false,
+                  "key": "ref",
+                  "value": "<string>",
+                  "description": "The git ref (branch, tag, or commit SHA) to list authors from. Defaults to `HEAD`."
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Restrict authors to those who touched this file path."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3470a17-be36-4148-965d-570179b9ba36",
+              "name": "Paginated commit author list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits",
+                    "authors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of unique authors matching the query across all pages.",
+                  "key": "X-Total-Count",
+                  "value": "8750"
+                },
+                {
+                  "disabled": false,
+                  "description": "Pagination links formatted per RFC 8288.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"commitCount\": 9896\n  },\n  {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"commitCount\": 3513\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "276be2c5-1d5c-4abf-a677-3fa484992dc0",
+              "name": "Invalid query parameters or git ref.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits",
+                    "authors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f67eccc4-8d37-4d58-8c88-47ae0aaab395",
+              "name": "Repository not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits",
+                    "authors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9023b2a5-ca92-4181-8973-aaba888540c4",
+              "name": "Unexpected failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "commits",
+                    "authors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ref",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 3745.260579642551,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "110990f3-a445-4ca8-8c5b-2d8aba779067",
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) Git API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.",
+      "type": "text/plain"
+    }
+  }
+}

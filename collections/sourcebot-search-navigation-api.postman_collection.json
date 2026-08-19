@@ -1,0 +1,656 @@
+{
+  "item": [
+    {
+      "id": "2824da2d-1c21-45f8-ad12-1cff23af5be1",
+      "name": "Search & Navigation",
+      "description": {
+        "content": "Code search and symbol navigation endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cfa944d-6600-4312-9128-aad56f603f20",
+          "name": "Search code",
+          "request": {
+            "name": "Search code",
+            "description": {
+              "content": "Executes a blocking code search and returns all matching file chunks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"matches\": \"<number>\",\n  \"contextLines\": \"<number>\",\n  \"whole\": \"<boolean>\",\n  \"isRegexEnabled\": \"<boolean>\",\n  \"isCaseSensitivityEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ef29e67-580a-407c-a830-acea721303c9",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"matches\": \"<number>\",\n  \"contextLines\": \"<number>\",\n  \"whole\": \"<boolean>\",\n  \"isRegexEnabled\": \"<boolean>\",\n  \"isCaseSensitivityEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats\": {\n    \"actualMatchCount\": 8897.845266621202,\n    \"totalMatchCount\": 8539.51437936572,\n    \"duration\": 1616.8857980412233,\n    \"fileCount\": 4550.040532666574,\n    \"filesSkipped\": 9690.053988576201,\n    \"contentBytesLoaded\": 1452.9073782883117,\n    \"indexBytesLoaded\": 8236.369336901542,\n    \"crashes\": 5946.03302189561,\n    \"shardFilesConsidered\": 6884.43774446908,\n    \"filesConsidered\": 9538.771488375205,\n    \"filesLoaded\": 4290.761426144251,\n    \"shardsScanned\": 9082.771245351525,\n    \"shardsSkipped\": 864.4826930538219,\n    \"shardsSkippedFilter\": 7189.071163679653,\n    \"ngramMatches\": 568.9913635888244,\n    \"ngramLookups\": 1522.5025231801126,\n    \"wait\": 7732.027637593912,\n    \"matchTreeConstruction\": 787.1596358202415,\n    \"matchTreeSearch\": 3829.7785464512144,\n    \"regexpsConsidered\": 4053.73449761247,\n    \"flushReason\": \"string\"\n  },\n  \"files\": [\n    {\n      \"fileName\": {\n        \"text\": \"string\",\n        \"matchRanges\": [\n          {\n            \"start\": {\n              \"byteOffset\": 984.1535265163193,\n              \"lineNumber\": 3642.1526193386444,\n              \"column\": 1067.818119690338\n            },\n            \"end\": {\n              \"byteOffset\": 3775.15865679516,\n              \"lineNumber\": 8372.44214859538,\n              \"column\": 72.69104327525477\n            }\n          },\n          {\n            \"start\": {\n              \"byteOffset\": 5295.0858581966795,\n              \"lineNumber\": 1946.3681156622247,\n              \"column\": 4257.2796626071495\n            },\n            \"end\": {\n              \"byteOffset\": 7680.980587234424,\n              \"lineNumber\": 1639.3098059745614,\n              \"column\": 4731.823185283895\n            }\n          }\n        ]\n      },\n      \"webUrl\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 8345.924008004185,\n      \"language\": \"string\",\n      \"chunks\": [\n        {\n          \"content\": \"string\",\n          \"matchRanges\": [\n            {\n              \"start\": {\n                \"byteOffset\": 8276.303822459176,\n                \"lineNumber\": 1872.247785373281,\n                \"column\": 7059.252547782101\n              },\n              \"end\": {\n                \"byteOffset\": 2958.154786440816,\n                \"lineNumber\": 7652.8023144683575,\n                \"column\": 8371.082167131673\n              }\n            },\n            {\n              \"start\": {\n                \"byteOffset\": 4815.768477496869,\n                \"lineNumber\": 2598.9046273440217,\n                \"column\": 5707.90448105858\n              },\n              \"end\": {\n                \"byteOffset\": 5494.97601815803,\n                \"lineNumber\": 939.9838366145375,\n                \"column\": 4822.202443846394\n              }\n            }\n          ],\n          \"contentStart\": {\n            \"byteOffset\": 5844.624176509533,\n            \"lineNumber\": 6184.291344867942,\n            \"column\": 9118.244480052526\n          },\n          \"symbols\": [\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            },\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            }\n          ]\n        },\n        {\n          \"content\": \"string\",\n          \"matchRanges\": [\n            {\n              \"start\": {\n                \"byteOffset\": 1921.556392367394,\n                \"lineNumber\": 5978.614895516903,\n                \"column\": 3145.7414300606647\n              },\n              \"end\": {\n                \"byteOffset\": 9210.209752695324,\n                \"lineNumber\": 8214.526197706933,\n                \"column\": 5780.3506376048945\n              }\n            },\n            {\n              \"start\": {\n                \"byteOffset\": 6982.083234617532,\n                \"lineNumber\": 8122.978806417787,\n                \"column\": 3732.983236609704\n              },\n              \"end\": {\n                \"byteOffset\": 7564.307498206204,\n                \"lineNumber\": 3764.6003645789806,\n                \"column\": 6924.456994931698\n              }\n            }\n          ],\n          \"contentStart\": {\n            \"byteOffset\": 8941.316588779026,\n            \"lineNumber\": 3034.6639079646166,\n            \"column\": 9124.764894400412\n          },\n          \"symbols\": [\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            },\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            }\n          ]\n        }\n      ],\n      \"externalWebUrl\": \"string\",\n      \"branches\": [\n        \"string\",\n        \"string\"\n      ],\n      \"content\": \"string\"\n    },\n    {\n      \"fileName\": {\n        \"text\": \"string\",\n        \"matchRanges\": [\n          {\n            \"start\": {\n              \"byteOffset\": 5571.86498739669,\n              \"lineNumber\": 5738.196012204983,\n              \"column\": 1500.2128950239323\n            },\n            \"end\": {\n              \"byteOffset\": 7204.573269889894,\n              \"lineNumber\": 4899.925543283492,\n              \"column\": 3506.522870956248\n            }\n          },\n          {\n            \"start\": {\n              \"byteOffset\": 3652.155415217353,\n              \"lineNumber\": 5431.661201093785,\n              \"column\": 5475.666476850844\n            },\n            \"end\": {\n              \"byteOffset\": 8642.208408879547,\n              \"lineNumber\": 3673.6015641007134,\n              \"column\": 1156.5169504064131\n            }\n          }\n        ]\n      },\n      \"webUrl\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 1570.6397507152126,\n      \"language\": \"string\",\n      \"chunks\": [\n        {\n          \"content\": \"string\",\n          \"matchRanges\": [\n            {\n              \"start\": {\n                \"byteOffset\": 5640.99818012368,\n                \"lineNumber\": 5111.192761286977,\n                \"column\": 767.7556778312888\n              },\n              \"end\": {\n                \"byteOffset\": 6584.372193820559,\n                \"lineNumber\": 1865.2370777110273,\n                \"column\": 3270.5434492884388\n              }\n            },\n            {\n              \"start\": {\n                \"byteOffset\": 8117.985908188465,\n                \"lineNumber\": 8103.578388702533,\n                \"column\": 7602.904946475673\n              },\n              \"end\": {\n                \"byteOffset\": 2534.0663746043733,\n                \"lineNumber\": 9393.820397328407,\n                \"column\": 5069.815060151769\n              }\n            }\n          ],\n          \"contentStart\": {\n            \"byteOffset\": 4032.2551156765585,\n            \"lineNumber\": 6842.772427177541,\n            \"column\": 9086.77249998119\n          },\n          \"symbols\": [\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            },\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            }\n          ]\n        },\n        {\n          \"content\": \"string\",\n          \"matchRanges\": [\n            {\n              \"start\": {\n                \"byteOffset\": 2944.7309848476157,\n                \"lineNumber\": 7269.9496578647095,\n                \"column\": 4244.098114000428\n              },\n              \"end\": {\n                \"byteOffset\": 4484.991214428033,\n                \"lineNumber\": 9565.049627901437,\n                \"column\": 2694.3683176877785\n              }\n            },\n            {\n              \"start\": {\n                \"byteOffset\": 7468.424974708192,\n                \"lineNumber\": 8446.819695026321,\n                \"column\": 4594.372615696153\n              },\n              \"end\": {\n                \"byteOffset\": 1199.4733579289184,\n                \"lineNumber\": 8339.722682538195,\n                \"column\": 3595.113198995625\n              }\n            }\n          ],\n          \"contentStart\": {\n            \"byteOffset\": 7713.313979409179,\n            \"lineNumber\": 8971.795298457302,\n            \"column\": 3814.2041411868845\n          },\n          \"symbols\": [\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            },\n            {\n              \"symbol\": \"string\",\n              \"kind\": \"string\",\n              \"parent\": {\n                \"symbol\": \"string\",\n                \"kind\": \"string\"\n              }\n            }\n          ]\n        }\n      ],\n      \"externalWebUrl\": \"string\",\n      \"branches\": [\n        \"string\",\n        \"string\"\n      ],\n      \"content\": \"string\"\n    }\n  ],\n  \"repositoryInfo\": [\n    {\n      \"id\": 4231.510146268342,\n      \"codeHostType\": \"bitbucketCloud\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    },\n    {\n      \"id\": 2257.3382006659813,\n      \"codeHostType\": \"genericGitHost\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    }\n  ],\n  \"isSearchExhaustive\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88f1ae78-30e6-45c2-9adf-43d7c07dc764",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"matches\": \"<number>\",\n  \"contextLines\": \"<number>\",\n  \"whole\": \"<boolean>\",\n  \"isRegexEnabled\": \"<boolean>\",\n  \"isCaseSensitivityEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44d08703-1a16-404a-82bb-cae88836309d",
+              "name": "Unexpected search failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"matches\": \"<number>\",\n  \"contextLines\": \"<number>\",\n  \"whole\": \"<boolean>\",\n  \"isRegexEnabled\": \"<boolean>\",\n  \"isCaseSensitivityEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83d68c7d-a1ee-4fe3-bbc7-b042354f28be",
+          "name": "Find symbol definitions",
+          "request": {
+            "name": "Find symbol definitions",
+            "description": {
+              "content": "Returns all locations in the codebase where the given symbol is defined.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "find_definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e78aad2-892d-43eb-a2ce-13ed921db8bd",
+              "name": "Symbol definition locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats\": {\n    \"matchCount\": 2304.9883771703217\n  },\n  \"files\": [\n    {\n      \"fileName\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 8963.964059951575,\n      \"webUrl\": \"string\",\n      \"language\": \"string\",\n      \"matches\": [\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 7755.2433624502655,\n              \"lineNumber\": 4764.117573284377,\n              \"column\": 212.03978981951144\n            },\n            \"end\": {\n              \"byteOffset\": 5792.922454624597,\n              \"lineNumber\": 2998.683980192336,\n              \"column\": 6828.124507343869\n            }\n          }\n        },\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 7415.412849215814,\n              \"lineNumber\": 5655.193281649889,\n              \"column\": 5208.52678394513\n            },\n            \"end\": {\n              \"byteOffset\": 3297.195768902651,\n              \"lineNumber\": 3739.0438117610547,\n              \"column\": 945.5930569357419\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"fileName\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 6618.072993924081,\n      \"webUrl\": \"string\",\n      \"language\": \"string\",\n      \"matches\": [\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 4817.421566706383,\n              \"lineNumber\": 7476.452173042993,\n              \"column\": 6551.630358808897\n            },\n            \"end\": {\n              \"byteOffset\": 2420.0917530543775,\n              \"lineNumber\": 4130.0244402514145,\n              \"column\": 8166.3854999992\n            }\n          }\n        },\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 5127.735598914094,\n              \"lineNumber\": 8777.476811588103,\n              \"column\": 1346.706966370933\n            },\n            \"end\": {\n              \"byteOffset\": 1545.8576512336442,\n              \"lineNumber\": 1084.9419454483811,\n              \"column\": 6353.792550520307\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"repositoryInfo\": [\n    {\n      \"id\": 3530.0192421482657,\n      \"codeHostType\": \"github\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    },\n    {\n      \"id\": 8794.845012482692,\n      \"codeHostType\": \"gitea\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "040d09fd-f253-47c1-b3cf-13f0f7d68453",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e2526af-be6b-41ad-ad66-0e8cf9493024",
+              "name": "Unexpected failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d480c544-4133-4f71-8209-970f26e8ab69",
+          "name": "Find symbol references",
+          "request": {
+            "name": "Find symbol references",
+            "description": {
+              "content": "Returns all locations in the codebase where the given symbol is referenced.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "find_references"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf5a48be-120b-46c9-a360-aaea2e251c4e",
+              "name": "Symbol reference locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stats\": {\n    \"matchCount\": 3412.610849801232\n  },\n  \"files\": [\n    {\n      \"fileName\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 6938.0358323776345,\n      \"webUrl\": \"string\",\n      \"language\": \"string\",\n      \"matches\": [\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 8544.288550894258,\n              \"lineNumber\": 2205.0586761883196,\n              \"column\": 8951.987492944465\n            },\n            \"end\": {\n              \"byteOffset\": 3834.337673683168,\n              \"lineNumber\": 3174.5811972385695,\n              \"column\": 2100.3615806821817\n            }\n          }\n        },\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 1072.7668075615982,\n              \"lineNumber\": 3046.2408670118525,\n              \"column\": 5606.3810746728595\n            },\n            \"end\": {\n              \"byteOffset\": 8601.908464832595,\n              \"lineNumber\": 4330.962034711064,\n              \"column\": 3856.989951822406\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"fileName\": \"string\",\n      \"repository\": \"string\",\n      \"repositoryId\": 5100.9000510090345,\n      \"webUrl\": \"string\",\n      \"language\": \"string\",\n      \"matches\": [\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 4458.993171537082,\n              \"lineNumber\": 9997.96998389181,\n              \"column\": 4921.658353500712\n            },\n            \"end\": {\n              \"byteOffset\": 1569.9789535027498,\n              \"lineNumber\": 6843.477349153886,\n              \"column\": 6031.804999331954\n            }\n          }\n        },\n        {\n          \"lineContent\": \"string\",\n          \"range\": {\n            \"start\": {\n              \"byteOffset\": 7161.256847273113,\n              \"lineNumber\": 6910.324236896713,\n              \"column\": 2473.700868877671\n            },\n            \"end\": {\n              \"byteOffset\": 8906.750588578856,\n              \"lineNumber\": 8595.969399997753,\n              \"column\": 7606.472313719554\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"repositoryInfo\": [\n    {\n      \"id\": 9537.992740028445,\n      \"codeHostType\": \"genericGitHost\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    },\n    {\n      \"id\": 6852.032481352698,\n      \"codeHostType\": \"gitea\",\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"webUrl\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bb006cc-6b08-4675-acfc-f85ae0e12599",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27dc7ec5-4b83-4dc5-b5be-5e0310fbb170",
+              "name": "Unexpected failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "find_references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbolName\": \"<string>\",\n  \"language\": \"<string>\",\n  \"revisionName\": \"<string>\",\n  \"repoName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4080.917588941627,\n  \"errorCode\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3632b699-989d-4501-bdbd-8fd68b05d410",
+    "name": "Sourcebot Public Enterprise (EE) Enterprise (EE) Search & Navigation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.",
+      "type": "text/plain"
+    }
+  }
+}
