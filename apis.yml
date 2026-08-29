@@ -12,6 +12,18 @@ description: >-
   history/blame/diff, and enterprise user/audit endpoints, secured with API keys (and EE OAuth
   for agent clients). Free self-hosted Basic tier, paid Pro tier for AI and enterprise security.
 url: https://raw.githubusercontent.com/api-evangelist/sourcebot/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
