@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Sourcebot Public Enterprise (EE) Enterprise (EE) Git API
+  title: Sourcebot Public Git API
   version: v5.1.3
   description: 'OpenAPI description for the public Sourcebot REST endpoints used for search, repository listing, and file browsing. Authentication is instance-dependent: API keys are the standard integration mechanism, OAuth bearer tokens are EE-only, and some instances may allow anonymous access.'
 security:
@@ -173,7 +173,7 @@ paths:
       tags:
       - Git
       summary: Get diff between two commits
-      description: Returns a structured diff between two git refs using a two-dot comparison. See [git-diff](https://git-scm.com/docs/git-diff) for details.
+      description: Returns a structured diff between two git refs using a two-dot comparison. See git-diff for details.
       parameters:
       - schema:
           type: string
@@ -287,18 +287,16 @@ paths:
         in: query
       - schema:
           type: integer
-          minimum: 0
-          exclusiveMinimum: true
           default: 1
+          exclusiveMinimum: 0
         required: false
         name: page
         in: query
       - schema:
           type: integer
-          minimum: 0
-          exclusiveMinimum: true
           maximum: 100
           default: 50
+          exclusiveMinimum: 0
         required: false
         name: perPage
         in: query
@@ -414,18 +412,16 @@ paths:
         in: query
       - schema:
           type: integer
-          minimum: 0
-          exclusiveMinimum: true
           default: 1
+          exclusiveMinimum: 0
         required: false
         name: page
         in: query
       - schema:
           type: integer
-          minimum: 0
-          exclusiveMinimum: true
           maximum: 100
           default: 50
+          exclusiveMinimum: 0
         required: false
         name: perPage
         in: query
@@ -465,184 +461,25 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
-    PublicFileSourceResponse:
+    PublicFileTreeNode:
       type: object
       properties:
-        source:
-          type: string
-        language:
+        type:
           type: string
         path:
           type: string
-        repo:
-          type: string
-        repoCodeHostType:
-          type: string
-          enum:
-          - github
-          - gitlab
-          - gitea
-          - gerrit
-          - bitbucketServer
-          - bitbucketCloud
-          - genericGitHost
-          - azuredevops
-        repoDisplayName:
-          type: string
-        repoExternalWebUrl:
-          type: string
-        webUrl:
-          type: string
-        externalWebUrl:
-          type: string
-        blobSha:
-          type: string
-      required:
-      - source
-      - language
-      - path
-      - repo
-      - repoCodeHostType
-      - webUrl
-    PublicApiServiceError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        errorCode:
-          type: string
-        message:
-          type: string
-      required:
-      - statusCode
-      - errorCode
-      - message
-      description: Structured error response returned by Sourcebot public API endpoints.
-    PublicCommitAuthor:
-      type: object
-      properties:
         name:
           type: string
-        email:
-          type: string
-        commitCount:
-          type: integer
-          minimum: 0
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicFileTreeNode'
       required:
+      - type
+      - path
       - name
-      - email
-      - commitCount
-    PublicFileBlameResponse:
-      type: object
-      properties:
-        ranges:
-          type: array
-          items:
-            type: object
-            properties:
-              hash:
-                type: string
-                description: The hash of the commit that last modified the lines in this range.
-              path:
-                type: string
-                description: The file path as it existed at the attributing commit. May differ from the current path due to renames.
-              startLine:
-                type: integer
-                minimum: 0
-                exclusiveMinimum: true
-                description: The 1-based line number where the range begins (inclusive).
-              lineCount:
-                type: integer
-                minimum: 0
-                exclusiveMinimum: true
-                description: The number of contiguous lines in this range.
-            required:
-            - hash
-            - path
-            - startLine
-            - lineCount
-          description: Contiguous, non-overlapping line ranges ordered by startLine. Each range is attributed to a single commit.
-        commits:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              hash:
-                type: string
-                description: The full commit SHA.
-              date:
-                type: string
-                description: The commit date in ISO 8601 format.
-              message:
-                type: string
-                description: The commit subject line.
-              authorName:
-                type: string
-              authorEmail:
-                type: string
-              previous:
-                type: object
-                properties:
-                  hash:
-                    type: string
-                    description: The hash of the commit that previously affected these lines (i.e., the next step backwards in the blame walk).
-                  path:
-                    type: string
-                    description: The file path as it existed at the previous commit. May differ from the current path due to renames.
-                required:
-                - hash
-                - path
-                description: Pointer to the previous commit that affected these lines, with the file path as it existed there. Absent when the commit introduced the lines (no earlier history to walk to).
-            required:
-            - hash
-            - date
-            - message
-            - authorName
-            - authorEmail
-          description: Commit metadata keyed by hash, deduplicated across ranges.
-      required:
-      - ranges
-      - commits
-    PublicListCommitAuthorsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicCommitAuthor'
-    PublicCommitDetail:
-      type: object
-      properties:
-        hash:
-          type: string
-          description: The full commit SHA.
-        date:
-          type: string
-          description: The commit date in ISO 8601 format.
-        message:
-          type: string
-          description: The commit subject line.
-        refs:
-          type: string
-          description: Refs pointing to this commit (e.g. branch or tag names).
-        body:
-          type: string
-          description: The commit body (everything after the subject line).
-        authorName:
-          type: string
-        authorEmail:
-          type: string
-        parents:
-          type: array
-          items:
-            type: string
-          description: The parent commit SHAs.
-      required:
-      - hash
-      - date
-      - message
-      - refs
-      - body
-      - authorName
-      - authorEmail
-      - parents
+      - children
+      additionalProperties: false
     PublicGetDiffResponse:
       type: object
       properties:
@@ -652,12 +489,14 @@ components:
             type: object
             properties:
               oldPath:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: The file path before the change. `null` for added files.
               newPath:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: The file path after the change. `null` for deleted files.
               hunks:
                 type: array
@@ -708,6 +547,132 @@ components:
           description: The list of changed files.
       required:
       - files
+    PublicFileSourceResponse:
+      type: object
+      properties:
+        source:
+          type: string
+        language:
+          type: string
+        path:
+          type: string
+        repo:
+          type: string
+        repoCodeHostType:
+          type: string
+          enum:
+          - github
+          - gitlab
+          - gitea
+          - gerrit
+          - bitbucketServer
+          - bitbucketCloud
+          - genericGitHost
+          - azuredevops
+        repoDisplayName:
+          type: string
+        repoExternalWebUrl:
+          type: string
+        webUrl:
+          type: string
+        externalWebUrl:
+          type: string
+        blobSha:
+          type: string
+      required:
+      - source
+      - language
+      - path
+      - repo
+      - repoCodeHostType
+      - webUrl
+    PublicCommitAuthor:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        commitCount:
+          type: integer
+          minimum: 0
+      required:
+      - name
+      - email
+      - commitCount
+    PublicListCommitsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicCommit'
+    PublicFileBlameResponse:
+      type: object
+      properties:
+        ranges:
+          type: array
+          items:
+            type: object
+            properties:
+              hash:
+                type: string
+                description: The hash of the commit that last modified the lines in this range.
+              path:
+                type: string
+                description: The file path as it existed at the attributing commit. May differ from the current path due to renames.
+              startLine:
+                type: integer
+                description: The 1-based line number where the range begins (inclusive).
+                exclusiveMinimum: 0
+              lineCount:
+                type: integer
+                description: The number of contiguous lines in this range.
+                exclusiveMinimum: 0
+            required:
+            - hash
+            - path
+            - startLine
+            - lineCount
+          description: Contiguous, non-overlapping line ranges ordered by startLine. Each range is attributed to a single commit.
+        commits:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              hash:
+                type: string
+                description: The full commit SHA.
+              date:
+                type: string
+                description: The commit date in ISO 8601 format.
+              message:
+                type: string
+                description: The commit subject line.
+              authorName:
+                type: string
+              authorEmail:
+                type: string
+              previous:
+                type: object
+                properties:
+                  hash:
+                    type: string
+                    description: The hash of the commit that previously affected these lines (i.e., the next step backwards in the blame walk).
+                  path:
+                    type: string
+                    description: The file path as it existed at the previous commit. May differ from the current path due to renames.
+                required:
+                - hash
+                - path
+                description: Pointer to the previous commit that affected these lines, with the file path as it existed there. Absent when the commit introduced the lines (no earlier history to walk to).
+            required:
+            - hash
+            - date
+            - message
+            - authorName
+            - authorEmail
+          description: Commit metadata keyed by hash, deduplicated across ranges.
+      required:
+      - ranges
+      - commits
     PublicGetTreeRequest:
       type: object
       properties:
@@ -723,6 +688,20 @@ components:
       - repoName
       - revisionName
       - paths
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
     PublicCommit:
       type: object
       properties:
@@ -753,29 +732,46 @@ components:
       - body
       - authorName
       - authorEmail
-    PublicFileTreeNode:
-      type: object
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublicFileTreeNode'
-      required:
-      - type
-      - path
-      - name
-      - children
-      additionalProperties: false
-    PublicListCommitsResponse:
+    PublicListCommitAuthorsResponse:
       type: array
       items:
-        $ref: '#/components/schemas/PublicCommit'
+        $ref: '#/components/schemas/PublicCommitAuthor'
+    PublicCommitDetail:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: The full commit SHA.
+        date:
+          type: string
+          description: The commit date in ISO 8601 format.
+        message:
+          type: string
+          description: The commit subject line.
+        refs:
+          type: string
+          description: Refs pointing to this commit (e.g. branch or tag names).
+        body:
+          type: string
+          description: The commit body (everything after the subject line).
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+        parents:
+          type: array
+          items:
+            type: string
+          description: The parent commit SHAs.
+      required:
+      - hash
+      - date
+      - message
+      - refs
+      - body
+      - authorName
+      - authorEmail
+      - parents
   securitySchemes:
     bearerToken:
       type: http

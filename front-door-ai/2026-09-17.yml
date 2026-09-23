@@ -1,0 +1,33 @@
+# Front Door AI Index — sourcebot — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: sourcebot
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.sourcebot.dev
+  final_host: www.sourcebot.dev
+  ownership: own
+  owner: sourcebot
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 14
+  host_score: 14
+  density: 29.35
+  words: 477
+  tiers:
+    agentic: 2
+    core: 4
+    model: 8
+  ambiguous: 9
+  top_terms:
+    agent: 9
+    AI: 3
+    Claude: 3
+    MCP: 2
+    OpenAI: 2
+    Anthropic: 1
+    Bedrock: 1
+    LLMs: 1
+    Mistral: 1
