@@ -227,16 +227,6 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
-    PublicEeDeleteUserResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      required:
-      - success
-      - message
     PublicApiServiceError:
       type: object
       properties:
@@ -339,6 +329,16 @@ components:
       - sourcebotVersion
       - metadata
       - orgId
+    PublicEeDeleteUserResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+      - success
+      - message
   securitySchemes:
     bearerToken:
       type: http
