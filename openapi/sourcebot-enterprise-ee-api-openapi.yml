@@ -227,65 +227,6 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
-    PublicApiServiceError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        errorCode:
-          type: string
-        message:
-          type: string
-      required:
-      - statusCode
-      - errorCode
-      - message
-      description: Structured error response returned by Sourcebot public API endpoints.
-    PublicEeUser:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type:
-          - string
-          - 'null'
-        email:
-          type: string
-        role:
-          type: string
-          enum:
-          - OWNER
-          - MEMBER
-        suspendedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        lastActivityAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - id
-      - name
-      - email
-      - role
-      - suspendedAt
-      - createdAt
-      - updatedAt
-      - lastActivityAt
-    PublicEeAuditResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicEeAuditRecord'
     PublicEeUsersResponse:
       type: array
       items:
@@ -329,6 +270,24 @@ components:
       - sourcebotVersion
       - metadata
       - orgId
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
+    PublicEeAuditResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicEeAuditRecord'
     PublicEeDeleteUserResponse:
       type: object
       properties:
@@ -339,6 +298,47 @@ components:
       required:
       - success
       - message
+    PublicEeUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+          - OWNER
+          - MEMBER
+        suspendedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastActivityAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - name
+      - email
+      - role
+      - suspendedAt
+      - createdAt
+      - updatedAt
+      - lastActivityAt
   securitySchemes:
     bearerToken:
       type: http

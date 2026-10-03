@@ -461,6 +461,40 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
+    PublicGetTreeRequest:
+      type: object
+      properties:
+        repoName:
+          type: string
+        revisionName:
+          type: string
+        paths:
+          type: array
+          items:
+            type: string
+      required:
+      - repoName
+      - revisionName
+      - paths
+    PublicFileTreeNode:
+      type: object
+      properties:
+        type:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicFileTreeNode'
+      required:
+      - type
+      - path
+      - name
+      - children
+      additionalProperties: false
     PublicFileBlameResponse:
       type: object
       properties:
@@ -530,86 +564,6 @@ components:
       required:
       - ranges
       - commits
-    PublicCommit:
-      type: object
-      properties:
-        hash:
-          type: string
-          description: The full commit SHA.
-        date:
-          type: string
-          description: The commit date in ISO 8601 format.
-        message:
-          type: string
-          description: The commit subject line.
-        refs:
-          type: string
-          description: Refs pointing to this commit (e.g. branch or tag names).
-        body:
-          type: string
-          description: The commit body (everything after the subject line).
-        authorName:
-          type: string
-        authorEmail:
-          type: string
-      required:
-      - hash
-      - date
-      - message
-      - refs
-      - body
-      - authorName
-      - authorEmail
-    PublicCommitDetail:
-      type: object
-      properties:
-        hash:
-          type: string
-          description: The full commit SHA.
-        date:
-          type: string
-          description: The commit date in ISO 8601 format.
-        message:
-          type: string
-          description: The commit subject line.
-        refs:
-          type: string
-          description: Refs pointing to this commit (e.g. branch or tag names).
-        body:
-          type: string
-          description: The commit body (everything after the subject line).
-        authorName:
-          type: string
-        authorEmail:
-          type: string
-        parents:
-          type: array
-          items:
-            type: string
-          description: The parent commit SHAs.
-      required:
-      - hash
-      - date
-      - message
-      - refs
-      - body
-      - authorName
-      - authorEmail
-      - parents
-    PublicApiServiceError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        errorCode:
-          type: string
-        message:
-          type: string
-      required:
-      - statusCode
-      - errorCode
-      - message
-      description: Structured error response returned by Sourcebot public API endpoints.
     PublicGetDiffResponse:
       type: object
       properties:
@@ -677,6 +631,20 @@ components:
           description: The list of changed files.
       required:
       - files
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
     PublicFileSourceResponse:
       type: object
       properties:
@@ -716,6 +684,44 @@ components:
       - repo
       - repoCodeHostType
       - webUrl
+    PublicListCommitsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicCommit'
+    PublicListCommitAuthorsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicCommitAuthor'
+    PublicCommit:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: The full commit SHA.
+        date:
+          type: string
+          description: The commit date in ISO 8601 format.
+        message:
+          type: string
+          description: The commit subject line.
+        refs:
+          type: string
+          description: Refs pointing to this commit (e.g. branch or tag names).
+        body:
+          type: string
+          description: The commit body (everything after the subject line).
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+      required:
+      - hash
+      - date
+      - message
+      - refs
+      - body
+      - authorName
+      - authorEmail
     PublicCommitAuthor:
       type: object
       properties:
@@ -730,48 +736,42 @@ components:
       - name
       - email
       - commitCount
-    PublicGetTreeRequest:
+    PublicCommitDetail:
       type: object
       properties:
-        repoName:
+        hash:
           type: string
-        revisionName:
+          description: The full commit SHA.
+        date:
           type: string
-        paths:
+          description: The commit date in ISO 8601 format.
+        message:
+          type: string
+          description: The commit subject line.
+        refs:
+          type: string
+          description: Refs pointing to this commit (e.g. branch or tag names).
+        body:
+          type: string
+          description: The commit body (everything after the subject line).
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+        parents:
           type: array
           items:
             type: string
+          description: The parent commit SHAs.
       required:
-      - repoName
-      - revisionName
-      - paths
-    PublicFileTreeNode:
-      type: object
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublicFileTreeNode'
-      required:
-      - type
-      - path
-      - name
-      - children
-      additionalProperties: false
-    PublicListCommitAuthorsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicCommitAuthor'
-    PublicListCommitsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicCommit'
+      - hash
+      - date
+      - message
+      - refs
+      - body
+      - authorName
+      - authorEmail
+      - parents
   securitySchemes:
     bearerToken:
       type: http

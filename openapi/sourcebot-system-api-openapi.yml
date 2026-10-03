@@ -40,13 +40,6 @@ paths:
                 $ref: '#/components/schemas/PublicHealthResponse'
 components:
   schemas:
-    PublicVersionResponse:
-      type: object
-      properties:
-        version:
-          type: string
-      required:
-      - version
     PublicHealthResponse:
       type: object
       properties:
@@ -56,6 +49,13 @@ components:
           - ok
       required:
       - status
+    PublicVersionResponse:
+      type: object
+      properties:
+        version:
+          type: string
+      required:
+      - version
   securitySchemes:
     bearerToken:
       type: http
