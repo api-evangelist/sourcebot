@@ -461,40 +461,73 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
-    PublicGetTreeRequest:
+    PublicGetDiffResponse:
       type: object
       properties:
-        repoName:
-          type: string
-        revisionName:
-          type: string
-        paths:
+        files:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              oldPath:
+                type:
+                - string
+                - 'null'
+                description: The file path before the change. `null` for added files.
+              newPath:
+                type:
+                - string
+                - 'null'
+                description: The file path after the change. `null` for deleted files.
+              hunks:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    oldRange:
+                      type: object
+                      properties:
+                        start:
+                          type: integer
+                          description: The 1-based line number where the range starts.
+                        lines:
+                          type: integer
+                          description: The number of lines the range spans.
+                      required:
+                      - start
+                      - lines
+                      description: The line range in the old file.
+                    newRange:
+                      type: object
+                      properties:
+                        start:
+                          type: integer
+                          description: The 1-based line number where the range starts.
+                        lines:
+                          type: integer
+                          description: The number of lines the range spans.
+                      required:
+                      - start
+                      - lines
+                      description: The line range in the new file.
+                    heading:
+                      type: string
+                      description: Optional context heading extracted from the @@ line, typically the enclosing function or class name.
+                    body:
+                      type: string
+                      description: The diff content, with each line prefixed by a space (context), + (addition), or - (deletion).
+                  required:
+                  - oldRange
+                  - newRange
+                  - body
+                description: The list of changed regions within the file.
+            required:
+            - oldPath
+            - newPath
+            - hunks
+          description: The list of changed files.
       required:
-      - repoName
-      - revisionName
-      - paths
-    PublicFileTreeNode:
-      type: object
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-        name:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublicFileTreeNode'
-      required:
-      - type
-      - path
-      - name
-      - children
-      additionalProperties: false
+      - files
     PublicFileBlameResponse:
       type: object
       properties:
@@ -564,134 +597,6 @@ components:
       required:
       - ranges
       - commits
-    PublicGetDiffResponse:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            type: object
-            properties:
-              oldPath:
-                type:
-                - string
-                - 'null'
-                description: The file path before the change. `null` for added files.
-              newPath:
-                type:
-                - string
-                - 'null'
-                description: The file path after the change. `null` for deleted files.
-              hunks:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    oldRange:
-                      type: object
-                      properties:
-                        start:
-                          type: integer
-                          description: The 1-based line number where the range starts.
-                        lines:
-                          type: integer
-                          description: The number of lines the range spans.
-                      required:
-                      - start
-                      - lines
-                      description: The line range in the old file.
-                    newRange:
-                      type: object
-                      properties:
-                        start:
-                          type: integer
-                          description: The 1-based line number where the range starts.
-                        lines:
-                          type: integer
-                          description: The number of lines the range spans.
-                      required:
-                      - start
-                      - lines
-                      description: The line range in the new file.
-                    heading:
-                      type: string
-                      description: Optional context heading extracted from the @@ line, typically the enclosing function or class name.
-                    body:
-                      type: string
-                      description: The diff content, with each line prefixed by a space (context), + (addition), or - (deletion).
-                  required:
-                  - oldRange
-                  - newRange
-                  - body
-                description: The list of changed regions within the file.
-            required:
-            - oldPath
-            - newPath
-            - hunks
-          description: The list of changed files.
-      required:
-      - files
-    PublicApiServiceError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        errorCode:
-          type: string
-        message:
-          type: string
-      required:
-      - statusCode
-      - errorCode
-      - message
-      description: Structured error response returned by Sourcebot public API endpoints.
-    PublicFileSourceResponse:
-      type: object
-      properties:
-        source:
-          type: string
-        language:
-          type: string
-        path:
-          type: string
-        repo:
-          type: string
-        repoCodeHostType:
-          type: string
-          enum:
-          - github
-          - gitlab
-          - gitea
-          - gerrit
-          - bitbucketServer
-          - bitbucketCloud
-          - genericGitHost
-          - azuredevops
-        repoDisplayName:
-          type: string
-        repoExternalWebUrl:
-          type: string
-        webUrl:
-          type: string
-        externalWebUrl:
-          type: string
-        blobSha:
-          type: string
-      required:
-      - source
-      - language
-      - path
-      - repo
-      - repoCodeHostType
-      - webUrl
-    PublicListCommitsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicCommit'
-    PublicListCommitAuthorsResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicCommitAuthor'
     PublicCommit:
       type: object
       properties:
@@ -722,6 +627,44 @@ components:
       - body
       - authorName
       - authorEmail
+    PublicGetTreeRequest:
+      type: object
+      properties:
+        repoName:
+          type: string
+        revisionName:
+          type: string
+        paths:
+          type: array
+          items:
+            type: string
+      required:
+      - repoName
+      - revisionName
+      - paths
+    PublicListCommitAuthorsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicCommitAuthor'
+    PublicFileTreeNode:
+      type: object
+      properties:
+        type:
+          type: string
+        path:
+          type: string
+        name:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicFileTreeNode'
+      required:
+      - type
+      - path
+      - name
+      - children
+      additionalProperties: false
     PublicCommitAuthor:
       type: object
       properties:
@@ -772,6 +715,63 @@ components:
       - authorName
       - authorEmail
       - parents
+    PublicFileSourceResponse:
+      type: object
+      properties:
+        source:
+          type: string
+        language:
+          type: string
+        path:
+          type: string
+        repo:
+          type: string
+        repoCodeHostType:
+          type: string
+          enum:
+          - github
+          - gitlab
+          - gitea
+          - gerrit
+          - bitbucketServer
+          - bitbucketCloud
+          - genericGitHost
+          - azuredevops
+        repoDisplayName:
+          type: string
+        repoExternalWebUrl:
+          type: string
+        webUrl:
+          type: string
+        externalWebUrl:
+          type: string
+        blobSha:
+          type: string
+      required:
+      - source
+      - language
+      - path
+      - repo
+      - repoCodeHostType
+      - webUrl
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
+    PublicListCommitsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicCommit'
   securitySchemes:
     bearerToken:
       type: http

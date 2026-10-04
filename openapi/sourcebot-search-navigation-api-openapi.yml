@@ -114,6 +114,143 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
+    PublicFindSymbolsRequest:
+      type: object
+      properties:
+        symbolName:
+          type: string
+        language:
+          type: string
+        revisionName:
+          type: string
+        repoName:
+          type: string
+      required:
+      - symbolName
+    PublicSearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+        matches:
+          type: number
+        contextLines:
+          type: number
+        whole:
+          type: boolean
+        isRegexEnabled:
+          type: boolean
+        isCaseSensitivityEnabled:
+          type: boolean
+      required:
+      - query
+      - matches
+    PublicFindSymbolsResponse:
+      type: object
+      properties:
+        stats:
+          type: object
+          properties:
+            matchCount:
+              type: number
+          required:
+          - matchCount
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              fileName:
+                type: string
+              repository:
+                type: string
+              repositoryId:
+                type: number
+              webUrl:
+                type: string
+              language:
+                type: string
+              matches:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    lineContent:
+                      type: string
+                    range:
+                      type: object
+                      properties:
+                        start:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                        end:
+                          type: object
+                          properties:
+                            byteOffset:
+                              type: number
+                            lineNumber:
+                              type: number
+                            column:
+                              type: number
+                          required:
+                          - byteOffset
+                          - lineNumber
+                          - column
+                      required:
+                      - start
+                      - end
+                  required:
+                  - lineContent
+                  - range
+            required:
+            - fileName
+            - repository
+            - repositoryId
+            - webUrl
+            - language
+            - matches
+        repositoryInfo:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              codeHostType:
+                type: string
+                enum:
+                - github
+                - gitlab
+                - gitea
+                - gerrit
+                - bitbucketServer
+                - bitbucketCloud
+                - genericGitHost
+                - azuredevops
+              name:
+                type: string
+              displayName:
+                type: string
+              webUrl:
+                type: string
+            required:
+            - id
+            - codeHostType
+            - name
+      required:
+      - stats
+      - files
+      - repositoryInfo
     PublicSearchResponse:
       type: object
       properties:
@@ -369,112 +506,6 @@ components:
       - files
       - repositoryInfo
       - isSearchExhaustive
-    PublicFindSymbolsResponse:
-      type: object
-      properties:
-        stats:
-          type: object
-          properties:
-            matchCount:
-              type: number
-          required:
-          - matchCount
-        files:
-          type: array
-          items:
-            type: object
-            properties:
-              fileName:
-                type: string
-              repository:
-                type: string
-              repositoryId:
-                type: number
-              webUrl:
-                type: string
-              language:
-                type: string
-              matches:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    lineContent:
-                      type: string
-                    range:
-                      type: object
-                      properties:
-                        start:
-                          type: object
-                          properties:
-                            byteOffset:
-                              type: number
-                            lineNumber:
-                              type: number
-                            column:
-                              type: number
-                          required:
-                          - byteOffset
-                          - lineNumber
-                          - column
-                        end:
-                          type: object
-                          properties:
-                            byteOffset:
-                              type: number
-                            lineNumber:
-                              type: number
-                            column:
-                              type: number
-                          required:
-                          - byteOffset
-                          - lineNumber
-                          - column
-                      required:
-                      - start
-                      - end
-                  required:
-                  - lineContent
-                  - range
-            required:
-            - fileName
-            - repository
-            - repositoryId
-            - webUrl
-            - language
-            - matches
-        repositoryInfo:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: number
-              codeHostType:
-                type: string
-                enum:
-                - github
-                - gitlab
-                - gitea
-                - gerrit
-                - bitbucketServer
-                - bitbucketCloud
-                - genericGitHost
-                - azuredevops
-              name:
-                type: string
-              displayName:
-                type: string
-              webUrl:
-                type: string
-            required:
-            - id
-            - codeHostType
-            - name
-      required:
-      - stats
-      - files
-      - repositoryInfo
     PublicApiServiceError:
       type: object
       properties:
@@ -489,37 +520,6 @@ components:
       - errorCode
       - message
       description: Structured error response returned by Sourcebot public API endpoints.
-    PublicFindSymbolsRequest:
-      type: object
-      properties:
-        symbolName:
-          type: string
-        language:
-          type: string
-        revisionName:
-          type: string
-        repoName:
-          type: string
-      required:
-      - symbolName
-    PublicSearchRequest:
-      type: object
-      properties:
-        query:
-          type: string
-        matches:
-          type: number
-        contextLines:
-          type: number
-        whole:
-          type: boolean
-        isRegexEnabled:
-          type: boolean
-        isCaseSensitivityEnabled:
-          type: boolean
-      required:
-      - query
-      - matches
   securitySchemes:
     bearerToken:
       type: http

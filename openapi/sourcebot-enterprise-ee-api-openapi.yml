@@ -227,77 +227,6 @@ paths:
                 $ref: '#/components/schemas/PublicApiServiceError'
 components:
   schemas:
-    PublicEeUsersResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicEeUser'
-    PublicEeAuditRecord:
-      type: object
-      properties:
-        id:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        action:
-          type: string
-          description: The audited action (e.g. `user.read`, `user.delete`, `audit.fetch`).
-        actorId:
-          type: string
-        actorType:
-          type: string
-        targetId:
-          type: string
-        targetType:
-          type: string
-        sourcebotVersion:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-        orgId:
-          type: number
-      required:
-      - id
-      - timestamp
-      - action
-      - actorId
-      - actorType
-      - targetId
-      - targetType
-      - sourcebotVersion
-      - metadata
-      - orgId
-    PublicApiServiceError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        errorCode:
-          type: string
-        message:
-          type: string
-      required:
-      - statusCode
-      - errorCode
-      - message
-      description: Structured error response returned by Sourcebot public API endpoints.
-    PublicEeAuditResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/PublicEeAuditRecord'
-    PublicEeDeleteUserResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-      required:
-      - success
-      - message
     PublicEeUser:
       type: object
       properties:
@@ -339,6 +268,77 @@ components:
       - createdAt
       - updatedAt
       - lastActivityAt
+    PublicEeAuditResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicEeAuditRecord'
+    PublicEeUsersResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PublicEeUser'
+    PublicEeDeleteUserResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+      - success
+      - message
+    PublicApiServiceError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        errorCode:
+          type: string
+        message:
+          type: string
+      required:
+      - statusCode
+      - errorCode
+      - message
+      description: Structured error response returned by Sourcebot public API endpoints.
+    PublicEeAuditRecord:
+      type: object
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        action:
+          type: string
+          description: The audited action (e.g. `user.read`, `user.delete`, `audit.fetch`).
+        actorId:
+          type: string
+        actorType:
+          type: string
+        targetId:
+          type: string
+        targetType:
+          type: string
+        sourcebotVersion:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+        orgId:
+          type: number
+      required:
+      - id
+      - timestamp
+      - action
+      - actorId
+      - actorType
+      - targetId
+      - targetType
+      - sourcebotVersion
+      - metadata
+      - orgId
   securitySchemes:
     bearerToken:
       type: http
