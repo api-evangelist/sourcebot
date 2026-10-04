@@ -150,6 +150,9 @@ apis:
   - type: DataModel
     url: data-model/sourcebot-data-model.yml
 common:
+- type: CapabilityMap
+  url: capabilities/sourcebot-capability-edges.yml
+  name: Sourcebot Business Capability Map
 - type: Overlay
   url: overlays/sourcebot-public-overlay.yaml
 - type: AgenticAccess

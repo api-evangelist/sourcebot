@@ -1,0 +1,35 @@
+slug: sourcebot
+provider: Sourcebot
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Git
+  spec_file: sourcebot-git-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.8
+  evidence: '"Get file blame", "Get diff between two commits", "List commits", "List commit authors"'
+  reason: These operations read source-control history and file contents, which is the implementation/source-control
+    practice described by Software Construction Management. Clearly engineering-tooling, not an industry
+    business process.
+- tag: Search & Navigation
+  spec_file: sourcebot-search-navigation-api-openapi.yml
+  capability_id: BC-4200
+  capability_id_l1: BC-4200
+  capability_name: Software Product Engineering Management
+  confidence: 0.7
+  evidence: '"Search code", "Find symbol definitions", "Find symbol references"'
+  reason: Code search and symbol navigation are developer-facing engineering tooling within software product
+    engineering; it is ambiguous whether this belongs to construction practice or engineering productivity
+    tooling, so only the L1 is asserted.
